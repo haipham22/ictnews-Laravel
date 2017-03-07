@@ -14,6 +14,11 @@
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/skin-red.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
+    <script type="text/javascript">
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token()
+        ]) !!}
+    </script>
     @yield('styles')
 </head>
 <body class="hold-transition skin-red sidebar-mini">
@@ -85,7 +90,7 @@
 
             <ul class="sidebar-menu">
                 <li class="header">MENU CHÍNH</li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Bài viết</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
@@ -98,7 +103,18 @@
                         <li><a href="#">Thùng rác</a></li>
                     </ul>
                 </li>
-                <li class=""><a href="#"><i class="fa fa-link"></i> <span>Chuyên mục</span></a></li>
+                <li class="treeview">
+                    <a href="javascript:;">
+                        <i class="fa fa-link"></i> <span>Chuyên mục</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{!! route('categories.index') !!}">@lang('admin.index')</a></li>
+                        <li><a href="{!! route('categories.create') !!}">@lang('admin.create')</a></li>
+                    </ul>
+                </li>
                 <li class=""><a href="{{asset('admin/users')}}"><i class="fa fa-link"></i> <span>Thành viên</span></a></li>
                 <li class=""><a href="#"><i class="fa fa-link"></i> <span>Bình luận</span></a></li>
                 <li class=""><a href="#"><i class="fa fa-link"></i> <span>QL trang</span></a></li>
@@ -146,6 +162,7 @@
 <script src="{{asset('js/sweetalert.min.js')}}"></script>
 
 @yield('scripts')
+    {!! Html::script('js/custom.js') !!}
 
 </body>
 </html>

@@ -35,7 +35,11 @@ Route::group(['middleware' => 'isroleadmin'], function () {
     	Route::get('users', ['as'=>'admin.usersList','uses'=>'Admin\UsersController@index']);
     	Route::get('users/setadmin/{id}', ['as'=>'admin.users.setadmin','uses'=>'Admin\UsersController@setadmin']);
     	Route::get('users/delete/{id}', ['as'=>'admin.users.delete','uses'=>'Admin\UsersController@delete']);
+
+    	Route::resource('categories', 'Admin\CategoriesController');
 	});
+
+
 });
 
 // Show not Admin

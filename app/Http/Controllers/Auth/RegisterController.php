@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 use Socialite;
 
 class RegisterController extends Controller

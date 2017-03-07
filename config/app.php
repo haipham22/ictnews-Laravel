@@ -179,6 +179,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        /** Form && HTML */
+        Collective\Html\HtmlServiceProvider::class,
+
+
+        /** Active */
+        Watson\Active\ActiveServiceProvider::class
+
     ],
 
     /*
@@ -229,6 +237,15 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+
+        /** Form && HTML */
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+
+
+        /** Active */
+        'Active' => Watson\Active\Facades\Active::class
     ],
 
 ];
