@@ -113,7 +113,7 @@
                 <div class="text-center">
                     <div class="box"></div>
                     <div class="box">
-                        <a class="btn btn-200 btn-primary" href="{{ asset('auth/facebook') }}" target="_blank">
+                        <a class="btn btn-200 btn-primary" href="{{ asset('auth/facebook') }}">
                             Đăng ký bằng Facebook
                         </a>
                     </div>

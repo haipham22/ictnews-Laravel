@@ -11,19 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 
 // Users CP
 Route::group(['middleware' => 'auth'], function () {
 	Route::group(['prefix'=>'user'], function(){
 		Route::get('/', ['as'=>'user.getProfile','uses'=>'HomeController@getProfile']);
-		Route::get('/{id}', ['as'=>'user.getProfileid','uses'=>'HomeController@getProfileid']);
+        Route::get('/{id}', ['as'=>'user.getProfileid','uses'=>'HomeController@getProfileid']);
+
     });
 });
 
@@ -32,11 +29,10 @@ Route::group(['middleware' => 'isroleadmin'], function () {
     Route::group(['prefix'=>'admin'], function(){
     	Route::get('/', ['as'=>'admin.getDashboard','uses'=>'Admin\DashboardController@index']);
 
-    	Route::get('users', ['as'=>'admin.usersList','uses'=>'Admin\UsersController@index']);
-    	Route::get('users/setadmin/{id}', ['as'=>'admin.users.setadmin','uses'=>'Admin\UsersController@setadmin']);
-    	Route::get('users/delete/{id}', ['as'=>'admin.users.delete','uses'=>'Admin\UsersController@delete']);
-
     	Route::resource('categories', 'Admin\CategoriesController');
+        Route::resource('posts', 'Admin\PostsController');
+        Route::resource('users', 'Admin\UsersController');
+        Route::resource('pages', 'Admin\PagesController');
 	});
 
 
@@ -50,3 +46,9 @@ Route::get('unauthorized',function(){
 // Login Socials Routes
 Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+
+Route::post('/search', ['as'=>'search','uses'=>'HomeController@search']); //search
+
+Route::get('/trang/{slug}', ['as'=>'pages.getPage','uses'=>'PagesController@index']); //show a pages
+Route::get('/{slug}', ['as'=>'posts.getPost','uses'=>'PostsController@getPost']); //show a pages
+Route::get('/c/{slug}', ['as'=>'categories.getCate','uses'=>'CategoriesController@index']); //show a categories

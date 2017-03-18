@@ -17,17 +17,21 @@
     <script type="text/javascript">
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token()
-        ]) !!}
+        ]) !!};
+        var baseUrl = "{{ url('/') }}";
     </script>
     @yield('styles')
+
+    <script src="{{asset('js/jquery-1.11.3.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 </head>
 <body class="hold-transition skin-red sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
             <a href="{{asset('admin')}}" class="logo">
-                <span class="logo-mini"><b>L</b>TE</span>
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <span class="logo-mini"><b>N</b>2N</span>
+                <span class="logo-lg"><b>Admin</b>N2N</span>
             </a>
 
             <nav class="navbar navbar-static-top" role="navigation">
@@ -97,10 +101,8 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">Danh sách bài viết</a></li>
-                        <li><a href="#">Đăng bài viết mới</a></li>
-                        <li><a href="#">Kiểu bài viết</a></li>
-                        <li><a href="#">Thùng rác</a></li>
+                        <li><a href="{!! route('posts.index') !!}">@lang('admin.post.index')</a></li>
+                        <li><a href="{!! route('posts.create') !!}">@lang('admin.post.create')</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -111,13 +113,24 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{!! route('categories.index') !!}">@lang('admin.index')</a></li>
-                        <li><a href="{!! route('categories.create') !!}">@lang('admin.create')</a></li>
+                        <li><a href="{!! route('categories.index') !!}">@lang('admin.cate.index')</a></li>
+                        <li><a href="{!! route('categories.create') !!}">@lang('admin.cate.create')</a></li>
                     </ul>
                 </li>
                 <li class=""><a href="{{asset('admin/users')}}"><i class="fa fa-link"></i> <span>Thành viên</span></a></li>
                 <li class=""><a href="#"><i class="fa fa-link"></i> <span>Bình luận</span></a></li>
-                <li class=""><a href="#"><i class="fa fa-link"></i> <span>QL trang</span></a></li>
+                <li class="treeview">
+                    <a href="javascript:;">
+                        <i class="fa fa-link"></i> <span>@lang('admin.pages.title')</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{!! route('pages.index') !!}">@lang('admin.pages.index')</a></li>
+                        <li><a href="{!! route('pages.create') !!}">@lang('admin.pages.create')</a></li>
+                    </ul>
+                </li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Công cụ</span>
                         <span class="pull-right-container">
@@ -153,16 +166,13 @@
         <div class="pull-right hidden-xs">
           Anything you want
         </div>
-            <strong>Copyright &copy; 2016 <a href="#">N1 Company</a>.</strong> PT11111-WEB - Dự Án 2 - FPOLY 11.1.
+            <strong>Copyright &copy; 2016 <a href="#">N2 Company</a>.</strong> PT11111-WEB - Dự Án 2 - FPOLY 11.1.
     </footer>
 
-<script src="{{asset('js/jquery-1.11.3.min.js')}}"></script>
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
 <script src="{{asset('js/app.min.js')}}"></script>
 <script src="{{asset('js/sweetalert.min.js')}}"></script>
-
 @yield('scripts')
-    {!! Html::script('js/custom.js') !!}
+{!! Html::script('js/custom.js') !!}
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', trans('admin.index'))
+@section('title', trans('admin.cate.index'))
 
 @section('styles')
     {!! Html::style('plugins/datatables/dataTables.bootstrap.css') !!}
@@ -14,18 +14,18 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">@lang('admin.index')</h3>
+            <h3 class="box-title">@lang('admin.cate.index')</h3>
         </div>
         <div class="box-body">
             <table class="table table-striped" id="list">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>@lang('admin.name')</th>
-                        <th>@lang('admin.slug')</th>
-                        <th>@lang('admin.parent')</th>
-                        <th>@lang('admin.updatedat')</th>
-                        <th>@lang('admin.tool')</th>
+                        <th>@lang('admin.cate.name')</th>
+                        <th>@lang('admin.cate.slug')</th>
+                        <th>@lang('admin.cate.parent')</th>
+                        <th>@lang('admin.cate.updatedat')</th>
+                        <th>@lang('admin.cate.tool')</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +41,8 @@
                             </td>
                             <td>{!! $category->updated_at !!}</td>
                             <td>
-                                {!! link_to_route('categories.destroy', 'Xóa', ['category' => $category->id], ['class' => 'delete btn btn-danger']) !!}
+                                {!! link_to_route('categories.edit', 'Sửa', ['category' => $category->id], ['class' => 'btn btn-xs btn-info']) !!}
+                                {!! link_to_route('categories.destroy', 'Xóa', ['category' => $category->id], ['class' => 'delete btn btn-xs btn-danger']) !!}
                             </td>
                         </tr>
                     @endforeach

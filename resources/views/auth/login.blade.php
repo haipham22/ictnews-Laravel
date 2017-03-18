@@ -55,11 +55,8 @@
                                 <button type="submit" class="btn btn-danger">
                                    Đăng nhập
                                 </button>
-
-                                
                             </div>
                         </div>
-                        
                     </form>
                 </div>
             </div>
@@ -72,7 +69,7 @@
                 <div class="text-center">
                     <div class="box"></div>
                     <div class="box">
-                        <a class="btn btn-200 btn-primary" href="{{ asset('auth/facebook') }}" target="_blank">
+                        <a class="btn btn-200 btn-primary" href="{{ asset('auth/facebook') }}">
                             Đăng nhập bằng Facebook
                         </a>
                     </div>

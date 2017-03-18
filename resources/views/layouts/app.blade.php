@@ -7,7 +7,7 @@
     <meta name="token" content="{{ csrf_token() }}">
     @yield('meta')
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'N2News') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -25,8 +25,9 @@
                 <div class="logo"><a href="/"><img class="hidden-xs" src="/uploads/img/logo.png" alt="ICTNews"><img class="hidden visible-xs-inline" src="/uploads/img/logo-white.png" alt="ICTNews"></a></div>
                 <div class="box-search">
                     <div class="bs-inner">
-                        <input type="text" id="input-search-main" name="" class="form-control" placeholder="Tìm kiếm">
-                        <button type="button" id="btn-search-main" class="btn-search"><i class="fa fa-search"></i></button>
+                        {!! Form::model('', ['method' => 'POST' , 'route' => 'search']) !!}
+                        {!! Form::text('keyword', old('keyword'), ['class' => 'form-control', 'id' => 'input-search-main','placeholder' => trans('home.search')]) !!}
+                        {!! Form::submit(trans('home.search'), ['class' => 'btn-search','id' => 'btn-search-main']) !!}
                     </div>
                 </div>
                 <div class="box-login">      
@@ -85,10 +86,7 @@
             </div>
         </div>
     </div>
-   <div class="news-scroll">
-    
-    @include('widgets/_header_news_list') <!-- List tin tức mới -->
-    
+
     @yield('content')
 
     <div class="footer">
@@ -100,13 +98,11 @@
                     <div class="col-md-7 col-sm-6">
                         <div class="footer-logo"><a href="/"><img src="/uploads/img/logo.png" alt="logo" style="height:66px"></a></div>
                         <div class="footer-content">
-                            <p>ICTNEWS - Chuyên trang về CNTT của Báo điện tử Infonet.</p>
-                            <p>Cơ quan chủ quản: <b>Bộ Thông tin và Truyền thông.</b></p>      
-                            <p>Tổng biên tập: Võ Đăng Thiên; Phó Tổng biên tập: Nguyễn Bá.</p>
-                            <p class="hidden-lg hidden-md">Tòa soạn: Tầng 7, Tòa nhà Cục Tần số Vô tuyến điện, 115 Trần Duy Hưng, Quận Cầu Giấy, Hà Nội</p>                         
-                            <p class="hidden-lg hidden-md">Hotline nội dung: 0888 911 911  - Email: toasoan@ictnews.vn</p>
-                            <p class="hidden-lg hidden-md">Hotline quảng cáo - truyền thông: Mr. Hồng Dương: 0122.733.6620  - Email: ad@ictnews.vn</p>
-                            <p>© Bản quyền thuộc Infonet. Không được phép sao chép khi chưa được chấp thuận bằng văn bản.</p>
+                            <p>N2NEWS - Chuyên trang về CNTT của Báo điện tử N2MAG.</p>
+                            <p>Cơ quan chủ quản: <b>Tập Đoàn Công Nghệ N2 Vietnam.</b></p>      
+                            <p>Tổng biên tập: Trần Hữu Thiện; Phó Tổng biên tập: Trần Hữu Thiên.</p>
+                            <p class="hidden-lg hidden-md">Hotline nội dung: 0888 888 888 - Email: toasoan@n2news.vn</p>
+                            <p>© Bản quyền thuộc N2NEWS. Không được phép sao chép khi chưa được chấp thuận bằng văn bản.</p>
                         </div><!-- footer-content -->
                     </div><!-- col -->
                 </div><!-- row -->
