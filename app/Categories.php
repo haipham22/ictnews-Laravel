@@ -98,4 +98,9 @@ class Categories extends Model
                 ['status', 1]
             ])->get();
     }
+
+    public function Posts()
+    {
+        return $this->hasMany(Posts::class);
+    }
 }

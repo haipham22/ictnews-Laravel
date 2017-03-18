@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 Use App\User;
+use Validator;
 
 class UsersController extends Controller
 {
@@ -15,25 +17,46 @@ class UsersController extends Controller
      */
     public function index()
     {   
-        $data = User::orderBy('created_at')
-                    ->paginate(20);
+        $data = User::orderBy('role','created_at')
+                    ->get();
         return view('admin.users.index',compact('data'));
     }
 
-    public function setadmin($id)
+    public function show($id) //setadmin
     {
-        $data = User::findOrFail($id);
-        $data->role = 2;
-        $data->save();
-            \Session::flash('msg_success', 'Đã chỉ định thành viên làm admin!');
-        return redirect()->back();
+        try {
+            $users = User::find($id);
+            $users->role = 2;
+            $users->save();
+
+            return response()->json([
+                'results'   => true,
+                'msg'   => trans('admin.user.setadminnoti'),
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'results'   => false,
+                'msg'   => $e->getMessage()
+            ]);
+        }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
-            \Session::flash('msg_success', 'Xóa bài viết thành công!');
-        return redirect()->back();
+        try {
+            $users = User::find($id);
+            $users->delete();
+            return response()->json([
+                'results'   => true,
+                'msg'   => trans('admin.user.deletednoti'),
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'results'   => false,
+                'msg'   => $e->getMessage()
+            ]);
+        }
     }
 }

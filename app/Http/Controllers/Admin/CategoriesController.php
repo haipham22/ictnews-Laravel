@@ -7,7 +7,7 @@ use App\Http\Requests\CategoriesRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
-
+ 
 class CategoriesController extends Controller
 {
     /**
@@ -58,7 +58,7 @@ class CategoriesController extends Controller
 
         Categories::create($request->all());
 
-        \Session::flash('msg_success', trans('admin.created'));
+        \Session::flash('msg_success', trans('admin.cate.created'));
 
         return redirect()->route('categories.index');
     }
@@ -110,10 +110,10 @@ class CategoriesController extends Controller
         $category = Categories::find($id);
         if ($category->update($request->all()))
         {
-            \Session::flash('msg_success', trans('admin.updated'));
+            \Session::flash('msg_success', trans('admin.cate.updated'));
             return redirect()->route('categories.index');
         }
-        \Session::flash('msg_danger', trans('admin.updated'));
+        \Session::flash('msg_danger', trans('admin.cate.updated'));
         return redirect()->back();
 
     }
@@ -131,7 +131,7 @@ class CategoriesController extends Controller
             $category->delete();
             return response()->json([
                 'results'   => true,
-                'msg'   => trans('admin.deleted'),
+                'msg'   => trans('admin.cate.deleted'),
             ]);
 
         } catch (\Exception $e) {

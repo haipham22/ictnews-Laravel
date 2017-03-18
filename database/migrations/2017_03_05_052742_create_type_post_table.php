@@ -13,13 +13,14 @@ class CreateTypePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_post', function (Blueprint $table) {
-            $table->increments('id');
-            $table->Integer('posts_id');
-            $table->string('name');
-            $table->string('icon');
-            $table->timestamps();
-        });
+        Schema::dropIfExists('type_post');
+        // Schema::create('type_post', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->Integer('posts_id');
+        //     $table->string('name');
+        //     $table->string('icon');
+        //     $table->timestamps();
+        // });
     }
 
     /**

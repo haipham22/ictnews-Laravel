@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'fullname', 'birthday'
+        'username', 'email', 'password', 'fullname', 'birthday', 'role'
     ];
 
     /**
@@ -27,13 +27,32 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    function Socials()
+    public function getUpdatedAtAttribute($value)
+    {
+        return makeTimeAgo($value);
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return makeTimeAgo($value);
+    }
+
+    public function Socials()
     {
         return $this->hasMany(Socials::class);
     }
 
-    function socialProviders()
+    public function socialProviders()
     {
         return $this->hasMany(Socials::class);
+    }
+
+    public function Posts()
+    {
+        return $this->hasMany(Posts::class, 'user_created');
     }
 }

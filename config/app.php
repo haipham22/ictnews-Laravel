@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'N2News',
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Laravel\Socialite\SocialiteServiceProvider::class, // Đăng nhập bằng MXH
-
+        Cviebrock\EloquentSluggable\ServiceProvider::class, //Slug
         /*
          * Package Service Providers...
          */

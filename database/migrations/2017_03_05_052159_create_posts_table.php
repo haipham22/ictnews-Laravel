@@ -13,6 +13,7 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('posts');
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->Integer('cate_id');
@@ -23,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->string('slug');
             $table->string('thumbnail');
+            $table->integer('type');
             $table->integer('show_home');
             $table->integer('oder');
             $table->integer('views');
