@@ -22,7 +22,7 @@ class CategoriesController extends Controller
                     ->where('cate_id','=',$categories->id)
                     ->paginate(20);
                     
-        return view('Categories.index',compact('categories','posts'));
+        return view('categories.index',compact('categories','posts'));
     }
 
     /**
