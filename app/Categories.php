@@ -101,6 +101,6 @@ class Categories extends Model
 
     public function Posts()
     {
-        return $this->hasMany(Posts::class);
+        return $this->hasMany('App\Categories', 'cate_id', 'id');
     }
 }

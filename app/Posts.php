@@ -35,7 +35,7 @@ class Posts extends Model
         return $this->belongsTo('App\User', 'user_created');
     }
 
-    public function Categories()
+    public function categories()
     {
         return $this->belongsTo('App\Categories', 'cate_id');
     }

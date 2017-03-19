@@ -52,3 +52,16 @@ Route::post('/search', ['as'=>'search','uses'=>'HomeController@search']); //sear
 Route::get('/trang/{slug}', ['as'=>'pages.getPage','uses'=>'PagesController@index']); //show a pages
 Route::get('/{slug}', ['as'=>'posts.getPost','uses'=>'PostsController@getPost']); //show a pages
 Route::get('/c/{slug}', ['as'=>'categories.getCate','uses'=>'CategoriesController@index']); //show a categories
+
+View::composer('widgets.menu', function($view){
+    $view->with('menuitems', 
+        App\Categories::where('add_to_menu','=','1')
+                    ->orderBy('order','ASC')
+                    ->get());
+});
+
+View::composer('widgets._sidebar_small', function($view){
+    $view->with('posts', 
+        App\Posts::where('status','=','1')
+                    ->get());
+});

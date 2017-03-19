@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Posts;
+use App\Categories;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,10 @@ class HomeController extends Controller
         $posts = Posts::orderBy('created_at', 'DESC')
                     ->limit(10)
                     ->get();
-        return view('home',compact('posts'));
+
+        $categories = Categories::all();
+
+        return view('home',compact('posts','categories'));
     }
 
     public function search(Request $request)
