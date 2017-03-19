@@ -25,9 +25,11 @@
                 <div class="logo"><a href="/"><img class="hidden-xs" src="/uploads/img/logo.png" alt="ICTNews"><img class="hidden visible-xs-inline" src="/uploads/img/logo-white.png" alt="ICTNews"></a></div>
                 <div class="box-search">
                     <div class="bs-inner">
-                        {!! Form::model('', ['method' => 'POST' , 'route' => 'search']) !!}
-                        {!! Form::text('keyword', old('keyword'), ['class' => 'form-control', 'id' => 'input-search-main','placeholder' => trans('home.search')]) !!}
-                        {!! Form::submit(trans('home.search'), ['class' => 'btn-search','id' => 'btn-search-main']) !!}
+                        <form action="{{ route('search') }}" method="POST">
+                            {{ csrf_field() }}
+                            <input id="input-search-main" class="form-control" type="text" placeholder="{{trans('home.search')}}">
+                            <button type="submit" class="btn-search" id="btn-search-main">{{trans('home.search')}}</button>
+                        </form>
                     </div>
                 </div>
                 <div class="box-login">      
@@ -65,24 +67,7 @@
                 </div>
             </div><!-- header -->
             <div class="menu" style="display: none;">
-                <ul>
-                    <li class="active">
-                        <a href="/" title="Trang chủ">
-                            <i class="fa fa-home hidden-sm hidden-xs"></i>
-                            <img class="icon" src="/uploads/img/menu-home.png">
-                            <span class="hidden-lg hidden-md">Trang chủ</span>
-                        </a>
-                    </li>
-                    <li class="li-submenu"><a href="">Thời sự</a></li>
-                    <li class="li-submenu"><a href="">Viễn thông</a></li>
-                    <li class="li-submenu"><a href="">Internet</a></li>
-                    <li class="li-submenu"><a href="">CNTT</a></li>
-                    <li class="li-submenu"><a href="">Kinh doanh</a></li>
-                    <li class="li-submenu"><a href="">Thế giới số</a></li>
-                    <li class="li-submenu"><a href="">Khởi nghiệp</a></li>
-                    <li class="li-submenu"><a href="">Công nghệ 360</a></li>
-                    <li class="li-submenu"><a href="">Video</a></li>
-                </ul>
+                @include('widgets.menu')
             </div>
         </div>
     </div>

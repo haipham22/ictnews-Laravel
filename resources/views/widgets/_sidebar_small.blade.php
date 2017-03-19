@@ -1,65 +1,23 @@
 <div class="col-md-4">
 	<div class="box wrapper-topview">
 	    <div class="box-title">
-	        <div class="lb-name">Top bài viết</div>
+	        <div class="lb-name">Bài viết mới nhất</div>
 	    </div>
 	    <div class="box-content">
             <div class="news-topview">
+            @foreach($posts as $post)
 			    <div class="grid">
-                    <div class="img"><a href="" title=""><img src="http://image1.ictnews.vn/_Files/2017/03/15/bo-truong-mai-tien_dung_225x170.jpg" title=""></a></div>
+                    <div class="img"><a href="{{ URL::route('posts.getPost',$post->slug) }}" title=""><img src="{!! $post->thumbnail ? $post->thumbnail : url('/uploads/img/default-thumbnail.jpg') !!}"></a></div>
                     <div class="g-content">
                         <div class="g-row">
-                            <a class="g-category" href="#"><i class="fa fa-list"></i> Chuyên Mục</a>
+                            <a class="g-category" href="{{ URL::route('categories.getCate',$post->Categories->slug) }}"><i class="fa fa-list"></i> {{ $post->categories->name }}</a>
                         </div>
                         <div class="g-row">
-                            <a class="g-title" href="" title="">Bộ trưởng Mai Tiến Dũng: “Thủ tướng giao cho tôi chuyển lời khen ngợi đến VNPT”</a>
+                            <a class="g-title" href="{{ URL::route('posts.getPost',$post->slug) }}" title="">{{ $post->title }}</a>
                         </div>
                     </div>
                 </div>
-                <div class="grid">
-                    <div class="img"><a href="" title=""><img src="http://image1.ictnews.vn/_Files/2017/03/15/bo-truong-mai-tien_dung_225x170.jpg" title=""></a></div>
-                    <div class="g-content">
-                        <div class="g-row">
-                            <a class="g-category" href="#"><i class="fa fa-list"></i> Chuyên Mục</a>
-                        </div>
-                        <div class="g-row">
-                            <a class="g-title" href="" title="">Bộ trưởng Mai Tiến Dũng: “Thủ tướng giao cho tôi chuyển lời khen ngợi đến VNPT”</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="img"><a href="" title=""><img src="http://image1.ictnews.vn/_Files/2017/03/15/bo-truong-mai-tien_dung_225x170.jpg" title=""></a></div>
-                    <div class="g-content">
-                        <div class="g-row">
-                            <a class="g-category" href="#"><i class="fa fa-list"></i> Chuyên Mục</a>
-                        </div>
-                        <div class="g-row">
-                            <a class="g-title" href="" title="">Bộ trưởng Mai Tiến Dũng: “Thủ tướng giao cho tôi chuyển lời khen ngợi đến VNPT”</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="img"><a href="" title=""><img src="http://image1.ictnews.vn/_Files/2017/03/15/bo-truong-mai-tien_dung_225x170.jpg" title=""></a></div>
-                    <div class="g-content">
-                        <div class="g-row">
-                            <a class="g-category" href="#"><i class="fa fa-list"></i> Chuyên Mục</a>
-                        </div>
-                        <div class="g-row">
-                            <a class="g-title" href="" title="">Bộ trưởng Mai Tiến Dũng: “Thủ tướng giao cho tôi chuyển lời khen ngợi đến VNPT”</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="img"><a href="" title=""><img src="http://image1.ictnews.vn/_Files/2017/03/15/bo-truong-mai-tien_dung_225x170.jpg" title=""></a></div>
-                    <div class="g-content">
-                        <div class="g-row">
-                            <a class="g-category" href="#"><i class="fa fa-list"></i> Chuyên Mục</a>
-                        </div>
-                        <div class="g-row">
-                            <a class="g-title" href="" title="">Bộ trưởng Mai Tiến Dũng: “Thủ tướng giao cho tôi chuyển lời khen ngợi đến VNPT”</a>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
 			</div>
 		</div>
 	</div>

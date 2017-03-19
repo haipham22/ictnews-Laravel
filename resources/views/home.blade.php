@@ -43,57 +43,7 @@
 			        </div>
 			    </div>
 			</div>
-			 <!-- Slide mews -->
-
-			@foreach($posts as $post)
-			@if($post->cate_id == $post->categories->id)
-        	<div class="col-md-6">
-			    <div class="box wrapper-list">
-			        <div class="box-title">
-			            <div class="lb-name">{{$post->categories->name}}</div>
-			        </div>
-			        
-			        <div class="news-big">
-			            <div class="grid">                            
-			                <div class="g-row">
-			                    <a class="g-title" href="{{ URL::route('posts.getPost',$post->slug) }}" title="">{!! $post->title !!}</a>
-			                </div>
-			                <div class="img"><a href="{{ URL::route('posts.getPost',$post->slug) }}"><img src="{!! $post->thumbnail ? $post->thumbnail : url('/uploads/img/default-thumbnail.jpg') !!}"></a></div>
-			                <div class="g-content">
-			                    <div class="g-row">
-			                        {!! str_limit($post->description) !!}
-			                    </div>
-			                </div>                            
-			            </div><!-- grid -->
-			        </div>
-
-			        <div class="box wrapper-list">
-			            <div class="box-content">
-			                <div class="news-list">
-			                    <ul>
-			                        <li>
-			                            <div class="grid">
-			                                <div class="content">
-			                                    <div class="g-row">
-			                                        <a class="g-category" href="{{ URL::route('categories.getCate',$post->Categories->slug) }}"><i class="fa fa-list"></i> {{$post->categories->name}}</a>
-			                                    </div>
-			                                    <div class="g-row">
-			                                        <a class="g-title" href="{{ URL::route('posts.getPost',$post->slug) }}">
-			                                        <h4>{!! $post->title !!}</h4>
-			                                        </a>
-			                                    </div>
-			                                </div>
-			                            </div><!-- grid -->
-			                        </li>
-			                    </ul>
-			                </div>
-						</div>
-	       			</div>
-
-	       		</div>
-       		</div>
-       		@endif
-       		@endforeach
+			<!-- Slide mews -->
 
 		</div>
         <div class="sidebar">
