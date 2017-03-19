@@ -118,7 +118,7 @@
                     </ul>
                 </li>
                 <li class=""><a href="{{asset('admin/users')}}"><i class="fa fa-link"></i> <span>Thành viên</span></a></li>
-                <li class=""><a href="#"><i class="fa fa-link"></i> <span>Bình luận</span></a></li>
+                <li class=""><a href="{!! route('comments.index') !!}"><i class="fa fa-link"></i> <span>@lang('admin.comments')</span></a></li>
                 <li class="treeview">
                     <a href="javascript:;">
                         <i class="fa fa-link"></i> <span>@lang('admin.pages.title')</span>

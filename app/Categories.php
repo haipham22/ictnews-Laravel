@@ -55,7 +55,7 @@ class Categories extends Model
      */
     public function setAddToMenuAttribute($value)
     {
-        $this->attributes['add_to_menu'] = 0;
+        $this->attributes['add_to_menu'] = $value;
     }
 
     /**

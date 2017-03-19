@@ -30,10 +30,13 @@ Route::group(['middleware' => 'isroleadmin'], function () {
     	Route::get('/', ['as'=>'admin.getDashboard','uses'=>'Admin\DashboardController@index']);
 
     	Route::resource('categories', 'Admin\CategoriesController');
+        Route::resource('comments', 'Admin\CommentsController');
+
         Route::resource('posts', 'Admin\PostsController');
         Route::resource('users', 'Admin\UsersController');
         Route::resource('pages', 'Admin\PagesController');
-	});
+
+    });
 
 
 });

@@ -38,14 +38,15 @@
                 <div class="col-md-4">
                     <div class="form-group {!! $errors->has('status') ? 'has-error' : '' !!}">
                         {!! Form::label('status', trans('admin.cate.status')) !!}
-                        {!! Form::select('status', ['Nháp', 'Đăng'], 1 ,['class' => 'form-control']) !!}
+                        {!! Form::select('status', [trans('admin.cate.status.draft'), trans('admin.cate.status.publish')], 1 ,['class' => 'form-control']) !!}
                         @if($errors->has('status'))
                             <span class="help-block">{!! $errors->first('status') !!}</span>
                         @endif
                     </div>
                     <div class="form-group">
                         {!! Form::label('add_to_menu', trans('admin.cate.add_to_menu')) !!}
-                        {!! Form::number('add_to_menu', old('add_to_menu'),['class' => 'form-control']) !!}
+                        {{--{!! Form::number('add_to_menu', old('add_to_menu'),['class' => 'form-control']) !!}--}}
+                        {!! Form::select('add_to_menu', [trans('admin.cate.add_to_menu.hide'), trans('admin.cate.add_to_menu.show')], old('add_to_menu'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group {!! $errors->has('order') ? 'has-error' : '' !!}">
                         {!! Form::label('order', trans('admin.cate.order')) !!}
@@ -62,7 +63,7 @@
                         @endif
                     </div>
                     <div class="form-group pull-right">
-                        {!! Form::submit(trans('admin.cate.submit'), ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit(trans('admin.cate.submit'), ['class' => 'btn btn-primary btn-block']) !!}
                     </div>
                 </div>
             {!! Form::close() !!}
