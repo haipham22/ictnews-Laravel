@@ -2,6 +2,17 @@
 
 @section('title')Tạo Trang @endsection
 
+@section('scripts')
+{!! Html::script('plugins/laravel-ckfinder/ckfinder.js') !!}
+{!! Html::script('plugins/laravel-ckeditor/ckeditor.js') !!}
+{!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
+{!! Html::script('js/ckeditor-custom.js') !!}
+<script>
+    $('#editor1').ckeditor("description");
+    $('#editor2').ckeditor("content");
+</script>
+@endsection
+
 @section('content')
 <div class="content">
 	<div class="box box-danger">
@@ -41,15 +52,4 @@
         {!! Form::close() !!}
     </div>
 </div>
-@endsection
-
-@section('scripts')
-<script src="/vendor/unisharp/laravel-ckfinder/ckfinder.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-<script src="/js/ckeditor-custom.js"></script>
-<script>
-    $('#editor1').ckeditor("description");
-    $('#editor2').ckeditor("content");
-</script>
 @endsection

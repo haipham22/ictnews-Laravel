@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 Use App\User;
 Use App\Posts;
 Use App\Categories;
+use App\Tags;
 use Validator;
 use Auth;
 
@@ -21,7 +22,7 @@ class PostsController extends Controller
      */
     public function index()
     {   
-        $posts = Posts::orderBy('created_at')->get();
+        $posts = Posts::orderBy('created_at', 'DESC')->get();
 
         return view('admin.posts.index',compact('posts'));
     }
@@ -31,6 +32,7 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
 

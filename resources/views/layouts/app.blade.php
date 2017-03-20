@@ -22,13 +22,18 @@
             <div class="header">
                 <button type="button" class="expand-menu"><span class="em-bar"></span><span class="em-bar"></span><span class="em-bar"></span><span class="em-bar"></span></button>
                 <button type="button" class="expand-search"><i class="icon30-search"></i></button>                
-                <div class="logo"><a href="/"><img class="hidden-xs" src="/uploads/img/logo.png" alt="ICTNews"><img class="hidden visible-xs-inline" src="/uploads/img/logo-white.png" alt="ICTNews"></a></div>
+                <div class="logo">
+                    <a href="/">
+                        <img class="hidden-xs" src="/uploads/img/logo.png">
+                        <img class="hidden visible-xs-inline" src="/uploads/img/logo-white.png">
+                    </a>
+                </div>
                 <div class="box-search">
                     <div class="bs-inner">
                         <form action="{{ route('search') }}" method="POST">
                             {{ csrf_field() }}
-                            <input id="input-search-main" class="form-control" type="text" placeholder="{{trans('home.search')}}">
-                            <button type="submit" class="btn-search" id="btn-search-main">{{trans('home.search')}}</button>
+                            <input name="keyword" id="input-search-main" class="form-control" type="text" placeholder="{{trans('home.search')}}">
+                            <button type="submit" class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
                         </form>
                     </div>
                 </div>

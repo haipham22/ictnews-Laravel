@@ -37,8 +37,6 @@ Route::group(['middleware' => 'isroleadmin'], function () {
         Route::resource('pages', 'Admin\PagesController');
 
     });
-
-
 });
 
 // Show not Admin
@@ -53,6 +51,7 @@ Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCa
 Route::post('/search', ['as'=>'search','uses'=>'HomeController@search']); //search
 
 Route::get('/trang/{slug}', ['as'=>'pages.getPage','uses'=>'PagesController@index']); //show a pages
+Route::get('/tin-moi', ['as'=>'posts.newslist','uses'=>'PostsController@index']);
 Route::get('/{slug}', ['as'=>'posts.getPost','uses'=>'PostsController@getPost']); //show a pages
 Route::get('/c/{slug}', ['as'=>'categories.getCate','uses'=>'CategoriesController@index']); //show a categories
 
@@ -66,5 +65,14 @@ View::composer('widgets.menu', function($view){
 View::composer('widgets._sidebar_small', function($view){
     $view->with('posts', 
         App\Posts::where('status','=','1')
+                    ->limit(10)
+                    ->get());
+});
+
+View::composer('widgets._header_news_list', function($view){
+    $view->with('posts', 
+        App\Posts::where('status','=','1')
+                    ->orderBy('created_at','DESC')
+                    ->limit(20)
                     ->get());
 });

@@ -99,8 +99,8 @@ class Categories extends Model
             ])->get();
     }
 
-    public function Posts()
+    public function posts()
     {
-        return $this->hasMany('App\Categories', 'cate_id', 'id');
+        return $this->hasManyThrough('App\Posts', 'App\Categories', 'id', 'cate_id');
     }
 }

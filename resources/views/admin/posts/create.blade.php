@@ -2,6 +2,28 @@
 
 @section('title', trans('admin.post.create'))
 
+@section('styles')
+    {!! Html::style('plugins/select2/select2.css') !!}
+@endsection
+
+@section('scripts')
+
+{!! Html::script('plugins/select2/select2.full.min.js') !!}
+{!! Html::script('/js/select2_edit.js') !!}
+
+{!! Html::script('plugins/laravel-ckfinder/ckfinder.js') !!}
+{!! Html::script('plugins/laravel-ckeditor/ckeditor.js') !!}
+{!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
+{!! Html::script('js/ckeditor-custom.js') !!}
+<script>
+    $('#editor1').ckeditor("description");
+    $('#editor2').ckeditor("content");
+    $('#thumbnail').click(function(){
+        BrowseServer();
+    });
+</script>
+@endsection
+
 @section('content')
     <div class="box">
         <div class="box-header">
@@ -48,7 +70,7 @@
                             <span class="help-block">{!! $errors->first('type') !!}</span>
                         @endif
                     </div>
-                    
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-6">
@@ -78,16 +100,3 @@
     </div>
 @endsection
 
-@section('scripts')
-<script src="/vendor/unisharp/laravel-ckfinder/ckfinder.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
-<script src="/js/ckeditor-custom.js"></script>
-<script>
-    $('#editor1').ckeditor("description");
-    $('#editor2').ckeditor("content");
-    $('#thumbnail').click(function(){
-        BrowseServer();
-    });
-</script>
-@endsection
