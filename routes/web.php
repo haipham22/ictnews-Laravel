@@ -35,6 +35,7 @@ Route::group(['middleware' => 'isroleadmin'], function () {
         Route::resource('posts', 'Admin\PostsController');
         Route::resource('users', 'Admin\UsersController');
         Route::resource('pages', 'Admin\PagesController');
+        Route::resource('ads', 'Admin\AdsController');
 
     });
 });
@@ -67,6 +68,10 @@ View::composer('widgets._sidebar_small', function($view){
         App\Posts::where('status','=','1')
                     ->limit(10)
                     ->get());
+    $view->with('ads', 
+        App\Ads::where('status','=','1')
+                    ->where('id','=','3')
+                    ->first());
 });
 
 View::composer('widgets._header_news_list', function($view){
@@ -75,4 +80,16 @@ View::composer('widgets._header_news_list', function($view){
                     ->orderBy('created_at','DESC')
                     ->limit(20)
                     ->get());
+});
+View::composer('widgets._top_ads', function($view){
+    $view->with('ads', 
+        App\Ads::where('status','=','1')
+                    ->where('id','=','1')
+                    ->first());
+});
+View::composer('widgets._sidebar', function($view){
+    $view->with('ads', 
+        App\Ads::where('status','=','1')
+                    ->where('id','=','2')
+                    ->first());
 });

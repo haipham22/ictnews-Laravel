@@ -26,7 +26,7 @@ class PostsController extends Controller
 
         return view('admin.posts.index',compact('posts'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

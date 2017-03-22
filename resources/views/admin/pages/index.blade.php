@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')Quản lý Trang @endsection
+@section('title')@lang('admin.pages.index')@endsection
 
 @section('styles')
     {!! Html::style('plugins/datatables/dataTables.bootstrap.css') !!}
@@ -14,17 +14,17 @@
 @section('content')
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Danh sách trang</h3>
+        <h3 class="box-title">@lang('admin.pages.index')</h3>
     </div>
     <div class="box-body">
         <table class="table table-striped" id="list">
             <tbody>
                 <tr>
                   	<th style="width: 10px">#</th>
-                    <th>Tên trang</th>
-                  	<th>Đường dẫn</th>
-                    <th>Ngày tạo</th>
-                  	<th>Công cụ</th>
+                  	<th>@lang('admin.pages.name')</th>
+                    <th>@lang('admin.pages.slug')</th>
+                    <th>@lang('admin.pages.created_at')</th>
+                  	<th>@lang('admin.pages.tool')</th>
                 </tr>
                 @php($i = 0)
                 @foreach($data as $item)

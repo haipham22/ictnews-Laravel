@@ -1,10 +1,10 @@
-function ckeditor (name) {
-    var editor = CKEDITOR.replace(name ,{
+function ckeditor(name) {
+    var editor = CKEDITOR.replace(name,{
         language:'vi',
-        filebrowserImageBrowseUrl : baseUrl+'plugins/laravel-ckfinder/ckfinder.html?Type=Images',
-        filebrowserFlashBrowseUrl : baseUrl+'plugins/laravel-ckfinder/ckfinder.html?Type=Flash',
-        filebrowserImageUploadUrl : baseUrl+'plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl : baseUrl+'plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+        filebrowserImageBrowseUrl : baseUrl+'/plugins/laravel-ckfinder/ckfinder.html?Type=Images',
+        filebrowserFlashBrowseUrl : baseUrl+'/plugins/laravel-ckfinder/ckfinder.html?Type=Flash',
+        filebrowserImageUploadUrl : baseUrl+'/plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl : baseUrl+'/plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
         toolbar:[
         ['Source','-','Save','NewPage','Preview','-','Templates'],
         ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
@@ -20,7 +20,7 @@ function ckeditor (name) {
         ['Maximize', 'ShowBlocks','-','About']
         ]
         });
-}
+    }
 
 function BrowseServer(name) { // Get a images Ckfinder
     CKFinder.popup( {

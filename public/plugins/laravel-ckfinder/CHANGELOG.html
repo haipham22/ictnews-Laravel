@@ -8,26 +8,16 @@
 <h1 id="ckfinder-changelog">CKFinder Changelog</h1>
 <p><a href="http://cksource.com/ckfinder">CKFinder</a></p>
 <p>Copyright (c) 2007-2016, CKSource - Frederico Knabben. All rights reserved.</p>
-<h2 id="version-3-4-1">Version 3.4.1</h2>
-<h3 id="new-features">New Features</h3>
-<ul>
-<li class="net">Added support for FTP storage.</li></ul>
-<h3 id="fixed-issues">Fixed Issues</h3>
-<ul>
-<li class="net">Improved Thumbnail command performance.</li></ul>
-<h3 id="localization-updates">Localization Updates</h3>
-<ul>
-<li>Updated: Greek and Turkish.</li></ul>
 <h2 id="version-3-4">Version 3.4</h2>
 <h3 id="new-features">New Features</h3>
 <ul>
-<li>The <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Application-event-settings_change_GROUP_NAME"><code>settings:change:GROUP:NAME</code></a> event has a new parameter: <code>previousValue</code>.</li><li>Added the <a href="https://cksource.com/ckfinder/demo#compact-ui">Compact View</a> for displaying files in columns (not supported in IE9).</li><li>The <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Config-cfg-defaultViewType"><code>defaultViewType</code></a> configuration option accepts a new value: <code>compact</code>.</li><li>Added the <code>width</code> parameter for columns defined for List View in the <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Application-event-listView_columns"><code>listView:columns</code></a> event.</li><li>Added the &quot;OK&quot; button to information dialogs (those created using the <code>dialog:info</code> request).</li><li class="net">Improved configuration validation.</li><li class="net">Added progress tracking for time-consuming operations.</li><li class="net">Added support for IIS virtual directories in the local storage adapter.</li></ul>
+<li>The <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Application-event-settings_change_GROUP_NAME"><code>settings:change:GROUP:NAME</code></a> event has new param: <code>previousValue</code>.</li><li>Added the Compact View for displaying files in columns (not supported in IE9).</li><li>The <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Config-cfg-defaultViewType"><code>defaultViewType</code></a> configuration option accepts new value: <code>compact</code>.</li><li>Added <code>width</code> parameter for columns defined for List View in <a href="http://docs.cksource.com/ckfinder3/#!/api/CKFinder.Application-event-listView_columns"><code>listView:columns</code></a> event.</li><li>Added &quot;OK&quot; button to information dialogs (those created using <code>dialog:info</code> request).</li><li class="net">Improved configuration validation.</li><li class="net">Added progress tracking for time-consuming operations.</li><li class="net">Added support for IIS virtual directories in local storage adapter.</li></ul>
 <h3 id="fixed-issues">Fixed Issues</h3>
 <ul>
-<li>Added the missing <code>command:before:FileUpload</code>, <code>command:ok:FileUpload</code> and <code>command:error:FileUpload</code> events for uploading files.</li><li>Fixed focus in the settings panel when changing the view type.</li><li>Fixed double <code>toolbar:reset:Main:folder</code> event in compact mode when the user selects a folder in the files pane.</li><li>Fixed keyboard navigation for disabled context menu items.</li><li>Removed the possibility to invoke the Delete File command by keyboard inside a folder with <code>ACL FILE_DELETE</code> set to <code>false</code>.</li><li>Removed the possibility to invoke the Rename File command by keyboard inside a folder with <code>ACL FILE_RENAME</code> set to <code>false</code>.</li><li>Fixed drag&amp;drop uploads in List View.</li><li>Updated Javascript code prettifier for samples.</li><li class="php">Fixed file permission issue occurring during file upload on some IIS server configurations.</li><li class="net">Fixed HTML file extension matching.</li><li class="net">Fixed URL generation for resized images in backends that use the Proxy command.</li><li class="net">Added missing file size field to the SaveImage command response.</li><li class="net">Improved thumbnail caching.</li></ul>
+<li>Added the missing <code>command:before:FileUpload</code>, <code>command:ok:FileUpload</code> and <code>command:error:FileUpload</code> events for uploading files.</li><li>Fixed focus in settings panel when changing view type.</li><li>Fixed double <code>toolbar:reset:Main:folder</code> event in compact mode when user selects folder in files pane.</li><li>Fixed keyboard navigation for disabled context menu items.</li><li>Removed possibility to invoke Delete File command by keyboard inside folder with ACL FILE_DELETE set to <code>false</code>.</li><li>Removed possibility to invoke Rename File command by keyboard inside folder with ACL FILE_RENAME set to <code>false</code>.</li><li>Fixed drag&amp;drop uploads on List View.</li><li>Updated Javascript code prettifier for samples</li><li class="php">Fixed file permission issue occurring during file upload on some IIS server configurations.</li><li class="net">Fixed HTML file extension matching.</li><li class="net">Fixed URL generation for resized images in backends that use Proxy command.</li><li class="net">Added missing file size field to SaveImage command response.</li><li class="net">Improved thumbnail caching.</li></ul>
 <h3 id="localization-updates">Localization Updates</h3>
 <ul>
-<li>Added: Swiss German (thanks to <a href="https://twitter.com/mirogrenda">Miro Grenda</a>!) and Ukrainian (thanks to Holovin Yevhen Nikolayevich!).</li><li>Updated: Chinese, Czech, Esperanto, French, German, Kurdish, Latvian, Polish, Russian, Slovakian, Spanish and Turkish.</li></ul>
+<li>Added: Swiss German and Ukrainian.</li><li>Updated: Chinese, Czech, Esperanto, French, German, Kurdish, Latvian, Polish, Russian, Slovakian, Spanish and Turkish.</li></ul>
 <h2 id="version-3-3-1">Version 3.3.1</h2>
 <h3 id="fixed-issues">Fixed Issues</h3>
 <ul>

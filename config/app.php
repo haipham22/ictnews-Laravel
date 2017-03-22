@@ -185,7 +185,7 @@ return [
 
 
         /** Active */
-        Watson\Active\ActiveServiceProvider::class
+        Watson\Active\ActiveServiceProvider::class,
 
     ],
 

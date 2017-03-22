@@ -18,5 +18,5 @@ class Tags extends Model
         ];
     }
 
-    protected $fillable = ['id', 'tag_name', 'posts_id', 'slug'];
+    protected $fillable = ['id', 'tag_name', 'slug'];
 }

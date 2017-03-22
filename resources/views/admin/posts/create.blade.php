@@ -16,8 +16,12 @@
 {!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
 {!! Html::script('js/ckeditor-custom.js') !!}
 <script>
-    $('#editor1').ckeditor("description");
-    $('#editor2').ckeditor("content");
+    $('#description').ready(function(){
+        ckeditor("description");
+    });
+    $('#content').ready(function(){
+        ckeditor("content");
+    });
     $('#thumbnail').click(function(){
         BrowseServer();
     });
@@ -42,14 +46,14 @@
                     </div>
                     <div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                         {!! Form::label('description', trans('admin.post.description')) !!}
-                        {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'id' => 'editor1', 'placeholder' => trans('admin.post.description')]) !!}
+                        {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'id' => 'description', 'placeholder' => trans('admin.post.description')]) !!}
                         @if($errors->has('description'))
                             <span class="help-block">{!! $errors->first('description') !!}</span>
                         @endif
                     </div>
                     <div class="form-group {!! $errors->has('content') ? 'has-error' : '' !!}">
                         {!! Form::label('content', trans('admin.post.content')) !!}
-                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'id' => 'editor2', 'content' => trans('admin.post.content')]) !!}
+                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'id' => 'content', 'content' => trans('admin.post.content')]) !!}
                         @if($errors->has('content'))
                             <span class="help-block">{!! $errors->first('content') !!}</span>
                         @endif
@@ -70,7 +74,6 @@
                             <span class="help-block">{!! $errors->first('type') !!}</span>
                         @endif
                     </div>
-
                     <div class="form-group">
                         <div class="row">
                             <div class="col-xs-6">

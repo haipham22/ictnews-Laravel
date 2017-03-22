@@ -9,8 +9,12 @@
                     <div class="main-small">
                         <ol class="breadcrumb" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
                             <li><a href="/">Trang chủ</a></li>
-                            <li class="active"><a itemprop="url" href="{{ URL::route('categories.getCate',$posts->Categories->slug) }}"><span itemprop="title">{{ $posts->Categories->name }}</span></a></li>
-                            <li class="time"><i class="fa fa-calendar"></i>{{ $posts->created_at }}</li>
+                            <li class="active">
+                                <a itemprop="url" href="{{ URL::route('categories.getCate',$posts->Categories->slug) }}"><span itemprop="title">{{ $posts->Categories->name }}</span>
+                                </a></li>
+                            <li class="time">
+                                <i class="fa fa-calendar"></i>{{ $posts->created_at }}  <i class="fa fa-user"></i>{{ $posts->user->username }}
+                            </li>
                         </ol>
             			<div id="page-wraper" class="box-news">
             				<div class="news-title">

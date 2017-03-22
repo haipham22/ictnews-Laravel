@@ -1,5 +1,5 @@
 <div class="box">
-	@if($ads)
+    @if($ads)
     {!! $ads->code !!}
     @endif
 </div>

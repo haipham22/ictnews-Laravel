@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Posts;
+use App\Ads;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\AdsRequest;
+use Validator;
 
-class PostsController extends Controller
+class AdsController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $posts = Posts::orderBy('created_at', 'DESC')
-                    ->paginate(20);
-        return view('posts.index',compact('posts','categories'));
-    }
+        $ads = Ads::all();
 
-    public function getPost($param)
-    {
-        $posts = Posts::where('slug', $param)
-                        ->firstOrFail();
-
-        return view('posts.getpost',compact('posts'));
+        return view('admin.ads.index',compact('ads'));
     }
 
     /**
@@ -63,7 +63,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ads = Ads::find($id);
+        return view('admin.ads.create', [
+                'ads'      => $ads,
+        ]);
     }
 
     /**
@@ -73,9 +76,16 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdsRequest $request, $id)
     {
-        //
+        $ads = Ads::find($id);
+        if ($ads->update($request->all()))
+        {
+            \Session::flash('msg_success', trans('admin.ads.updated'));
+            return redirect()->route('ads.index');
+        }
+        \Session::flash('msg_danger', trans('admin.ads.updated'));
+        return redirect()->back();
     }
 
     /**

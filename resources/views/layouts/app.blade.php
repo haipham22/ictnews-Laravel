@@ -74,6 +74,9 @@
             <div class="menu" style="display: none;">
                 @include('widgets.menu')
             </div>
+            <div class="header-banner hidden-xs hidden-sm">
+                @include('widgets._top_ads')
+            </div>
         </div>
     </div>
 

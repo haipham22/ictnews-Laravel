@@ -32,8 +32,10 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = '';
-$config['licenseKey']  = '';
+$config['LicenseName'] = $_SERVER['HTTP_HOST'];
+$str_dom = strlen($_SERVER['HTTP_HOST']);
+$characters = "ZYXWVUTSRQPNMLKJHGFEDCBA987654321";
+$config['LicenseKey'] = "2".$characters[$str_dom % 33 + (int)($str_dom / 33)]."11EFGH1JK11NOPQRSTUVWXY41";
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir

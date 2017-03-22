@@ -138,8 +138,7 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#">Quảng cáo</a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="{!! route('ads.index') !!}">@lang('admin.ads.index')</a></li>
                     </ul>
                 </li>
             </ul>
