@@ -31,6 +31,7 @@ Route::group(['middleware' => 'isroleadmin'], function () {
 
     	Route::resource('categories', 'Admin\CategoriesController');
         Route::resource('comments', 'Admin\CommentsController');
+        Route::post('comments/{id}/setstatus', ['as' => 'comments.setstatus', 'uses'=> 'Admin\CommentsController@setStatus']);
 
         Route::resource('posts', 'Admin\PostsController');
         Route::resource('users', 'Admin\UsersController');
@@ -39,7 +40,6 @@ Route::group(['middleware' => 'isroleadmin'], function () {
 
     });
 });
-
 // Show not Admin
 Route::get('unauthorized',function(){
 	return view('errors.404');
@@ -48,6 +48,8 @@ Route::get('unauthorized',function(){
 // Login Socials Routes
 Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+
+Route::post('ajax', ['as' => 'ajax', 'uses' => 'PostsController@ajax']);
 
 Route::post('/search', ['as'=>'search','uses'=>'HomeController@search']); //search
 
