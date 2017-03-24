@@ -23,23 +23,27 @@
                 }
             });
         })
-        /*$('.modal-dialog').on('click', '.btn-send-comment', function () {
+        $('.modal-dialog').on('click', '.btn-send-comment', function () {
             var content,
                 parent_id,
+                user_id,
                 post_id,
-                form = $(this).closest('.form'),
+                form = $(this).closest('.modal-dialog'),
                 send = function () {
                     $.post(form.find('#reply_url').val(), {
                         _token: window.Laravel.csrfToken,
                         post_id: post_id,
                         parent_id: parent_id,
+                        user_id: user_id,
+                        status: 1,
                         content: content.replace(/\r\n|\r|\n/g, "<br/>"),
                     }, function (data) {
-                        console.log(data);
+                        window.location.reload();
                     });
                 };
-            return (content = form.find('textarea').val(), post_id = form.find('#user_id').val(), parent_id = form.find('#parent_id').val(), content.length == 0) ? (form.find(".form-group").addClass("has-error").find("label").html("Bạn chưa nhập nội dung ý kiến !"), !1) : content.length < 10 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá ngắn !"), !1) : content.length > 1e3 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá dài !"), !1) : (send(), !1)
-        });*/
+//            console.log(form.find('textarea').val());
+            return (content = form.find('textarea:first').val(), user_id = $(this).attr('user_id'), post_id = $(this).attr('post_id'), parent_id = $(this).attr('parent_id'), content.length == 0) ? (form.find(".form-group").addClass("has-error").find("label").html("Bạn chưa nhập nội dung ý kiến !"), !1) : content.length < 10 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá ngắn !"), !1) : content.length > 1e3 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá dài !"), !1) : (send(), !1)
+        });
     </script>
 @endsection
 
@@ -69,6 +73,7 @@
                                         {!! $comment->content !!}
                                         <p>
                                             <button class="btn btn-xs" data-toggle="modal" data-target="#reply-{!! $comment->id !!}">Trả lời</button>
+                                            <a href="{!! route('comments.edit', ['comment' => $comment->id]) !!}" class="btn btn-default btn-xs">Sửa</a>
                                         </p>
                                         <div id="reply-{!! $comment->id !!}" class="modal fade reply" role="dialog">
                                             <div class="modal-dialog">
@@ -79,19 +84,17 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="form">
-                                                            <input type="hidden" id="reply_url" value="{!! route('comments.store') !!}">
-                                                            <input type="hidden" id="post_id" value="{!! $comment->post_id !!}">
-                                                            <input type="hidden" id="parent_id" value="{!! $comment->id !!}">
                                                             <div class="form-group" style="width: 100%;">
-                                                                <textarea name="content" id="content" cols="30"
-                                                                          rows="5" class="content form-control" style="width: 100%;"></textarea>
+                                                                <textarea name="content" cols="30"
+                                                                          rows="5" class="content-{!! $comment->id !!} form-control" style="width: 100%;"></textarea>
                                                                 <label for="content" class="control-label help-block">Nội dung</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
-                                                        <button type="button" class="btn-send-comment btn btn-info">Gửi</button>
+                                                        <button type="button" reply_url="{!! route('comments.store') !!}" post_id="{!! $comment->post_id !!}"
+                                                                parent_id="{!! $comment->id !!}" user_id="{!! \Auth::user()->id !!}" class="btn-send-comment btn btn-info">Gửi</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,11 +106,11 @@
                                     <td><a href="{!! route('posts.getPost', ['slug' => $comment->post()->first()->slug]) !!}#{!! $comment->id !!}">{!! $comment->created_at !!}</a></td>
                                     <td>
                                         @if($comment->status)
-                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="0" class="btn-status">Ẩn</a>
+                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="0" class="btn-status btn-xs btn btn-success">Ẩn</a>
                                         @else
-                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="1" class="btn-status">Hiện</a>
+                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="1" class="btn-status btn-xs btn btn-success">Hiện</a>
                                         @endif
-                                        {!! link_to_route('comments.destroy', 'Xóa', ['comment' => $comment->id], ['class' => 'delete']) !!}
+                                        {!! link_to_route('comments.destroy', 'Xóa', ['comment' => $comment->id], ['class' => 'delete btn-xs btn btn-danger']) !!}
                                     </td>
                                 </tr>
                                 @foreach($comments as $sub)
@@ -117,6 +120,9 @@
                                             <td>
                                                 <p><a href="#{!! $sub->parent_id !!}">Trả lời tới {!! $comment->name !!}</a></p>
                                                 <p>{!! $sub->content !!}</p>
+                                                <p>
+                                                    <a href="{!! route('comments.edit', ['comment' => $sub->id]) !!}" class="btn btn-default btn-xs">Sửa</a>
+                                                </p>
                                             </td>
                                             <td>
                                                 <a href="{!! route('posts.edit', ['slug' => $sub->post_id]) !!}">{!! $sub->parent !!}</a>
@@ -124,11 +130,11 @@
                                             <td><a href="{!! route('posts.getPost', ['slug' => $sub->post()->first()->slug]) !!}#{!! $sub->id !!}">{!! $sub->created_at !!}</a></td>
                                             <td>
                                                 @if($sub->status)
-                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="0" class="btn-status">Ẩn</a>
+                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="0" class="btn-status btn-xs btn btn-success">Ẩn</a>
                                                 @else
-                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="1" class="btn-status">Hiện</a>
+                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="1" class="btn-status btn-xs btn btn-success">Hiện</a>
                                                 @endif
-                                                {!! link_to_route('comments.destroy', 'Xóa', ['$sub' => $sub->id], ['class' => 'delete']) !!}
+                                                {!! link_to_route('comments.destroy', 'Xóa', ['$sub' => $sub->id], ['class' => 'delete btn-xs btn btn-danger']) !!}
                                             </td>
                                         </tr>
                                     @endif

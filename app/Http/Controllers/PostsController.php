@@ -33,8 +33,6 @@ class PostsController extends Controller
 
     public function ajax(Request $request)
     {
-//        $method = $request->type;
-
         return $this->{$request->type}($request);
     }
 

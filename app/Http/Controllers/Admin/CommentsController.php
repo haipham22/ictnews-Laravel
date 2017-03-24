@@ -40,7 +40,9 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = Comments::create($request->all());
+
+        return $comment;
     }
 
     /**
@@ -62,7 +64,10 @@ class CommentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.comments.edit')
+            ->with([
+                'comments'  => Comments::find($id),
+            ]);
     }
 
     /**
@@ -74,7 +79,10 @@ class CommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comments = Comments::find($id);
+        $comments->update($request->all());
+
+        return redirect()->route('comments.index');
     }
 
     /**
