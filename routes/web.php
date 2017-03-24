@@ -68,7 +68,7 @@ View::composer('widgets.menu', function($view){
 View::composer('widgets._sidebar_small', function($view){
     $view->with('posts', 
         App\Posts::where('status','=','1')
-                    ->limit(10)
+                    ->limit(5)
                     ->get());
     $view->with('ads', 
         App\Ads::where('status','=','1')

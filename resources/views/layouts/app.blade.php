@@ -11,6 +11,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="text/javascript">
         var WebControl = {!! json_encode([
@@ -19,9 +20,8 @@
         ]) !!}
     </script>
     @yield('styles')
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/jquery-1.11.3.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-
 </head>
 <body> 
     <div class="navigator navigator-menu">

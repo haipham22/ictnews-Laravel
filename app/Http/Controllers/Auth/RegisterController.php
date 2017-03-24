@@ -100,7 +100,7 @@ class RegisterController extends Controller
 
             $user = User::firstOrCreate(
                 ['email' => $socialUser->getEmail()],
-                ['username' => $socialUser->getNickname()],
+                ['username' => $socialUser->getName()],
                 ['fullname' => $socialUser->getName()]
             );
             

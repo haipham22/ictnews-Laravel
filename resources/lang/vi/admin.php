@@ -87,6 +87,13 @@ return [
 
     /** Comment */
     'comments'              => 'Bình luận',
-    'comments.index'        => 'Danh sách',
-    'comments.create'        => 'Thêm mới',
+    'comments.index'        => 'Danh sách bình luận',
+    'comments.create'       => 'Thêm mới',
+    'comments.index'        => 'Quản lý bình luận',
+    'comments.edit'         => 'Sửa bình luận',
+    'comments.name'         => 'Người dùng',
+    'comments.content'      => 'Nội dung',
+    'comments.parent'       => 'Bài viết',
+    'comments.updatedat'    => 'Thời gian',
+    'comments.tool'         => 'Công cụ',
 ];

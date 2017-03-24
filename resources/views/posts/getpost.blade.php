@@ -76,7 +76,7 @@
             						{!! $posts->content !!}
                                 </div>
                             </div>
-                            <div class="box-tag">
+                            <!-- <div class="box-tag">
                                 <div class="bt-left">
                                     <i class="icon20-tag"></i>
                                     Từ khoá:
@@ -84,7 +84,7 @@
                                 <div class="bt-content">
                                     <a href="/" title="Facecar">Tag name</a>
                                 </div>
-                            </div>
+                            </div> -->
                             @include('widgets/_box_comment')
             			</div>
                     </div>

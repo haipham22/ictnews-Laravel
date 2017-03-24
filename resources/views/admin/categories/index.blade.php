@@ -1,95 +1,53 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('title', trans('admin.cate.index'))
+
+@section('styles')
+    {!! Html::style('plugins/datatables/dataTables.bootstrap.css') !!}
+@endsection
+
+@section('scripts')
+    {!! Html::script('plugins/datatables/jquery.dataTables.min.js') !!}
+    {!! Html::script('plugins/datatables/dataTables.bootstrap.min.js') !!}
+@endsection
 
 @section('content')
-
-<div class="news-scroll">
-
-@include('widgets._header_news_list')
-
-<div class="container">
-    <div class="bground">
-        <div class="main">
-			<div class="row">
-		       	<div class="col-md-8">
-				    <div class="box wrapper-list">
-				        <div class="box-title">
-				            <div class="lb-name">CHUYÊN MỤC: {!! $categories->name !!}</div>
-				        </div>
-						<div class="box-content">
-			                <div class="news-list">
-			                @if(count($posts) > 0)
-			                    <ul>
-						       	@foreach($posts as $post)
-
-							       	@if ($loop->first)
-									<div class="news-big">
-								        <div class="grid">
-							                <div class="img">
-							                	<a href="{{ URL::route('posts.getPost',$post->slug) }}">
-							                		<img src="{!! $post->thumbnail ? $post->thumbnail : url('/uploads/img/default-thumbnail.jpg') !!}">
-							                	</a>
-							                </div>
-							                <div class="g-content">
-							                    <div class="g-row">
-							                        <a class="g-title-white" href="{{ URL::route('posts.getPost',$post->slug) }}">{!! $post->title !!}</a>
-							                    </div>
-							                </div>                            
-							            </div><!-- grid -->
-									</div>
-									@else
-			                        <li>
-									    <div class="grid row">
-									        <div class="col-md-4 hidden-xs hidden-sm">
-									        	<a href="{{ URL::route('posts.getPost',$post->slug) }}" title="">
-									        		<img class="img-responsive" src="{!! $post->thumbnail ? $post->thumbnail : url('/uploads/img/default-thumbnail.jpg') !!}">
-									        	</a>
-									        </div>
-									        <div class="col-md-8">
-										        <div class="g-content">
-										            <div class="g-row">
-										                <a class="g-category" href="{{ URL::route('categories.getCate',$post->Categories->slug) }}"><i class="fa fa-list"></i> {!! $categories->name !!} - <i class="fa fa-clock-o"></i> {{ $post->created_at }}</a>
-										            </div>
-										            <div class="g-row">
-										                <a class="g-title" href="{{ URL::route('posts.getPost',$post->slug) }}" title="">
-										                	<h2>{!! $post->title !!}</h2>
-										                	</a>
-										            </div>
-										            <div class="g-row">
-										                {!! str_limit($post->description) !!}
-										            </div>
-										        </div>
-										    </div>
-									    </div><!-- grid -->
-									</li>
-									@endif
-						        @endforeach
-						       	</ul>
-						    @else
-
-						    	<p>@lang('home.post.nopostcate')</p>
-
-						    @endif
-			        		</div>
-				    	</div>
-				    </div>
-
-					<div class="news-more">
-						{{ $posts->links() }}
-					</div>
-				</div> <!-- Content Left -->
-
-				<div class="sidebar-small">
-					@include('widgets/_sidebar_small')<!-- Sidebar small Right -->
-				</div>
-				
-			</div>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">@lang('admin.cate.index')</h3>
         </div>
-
-        <div class="sidebar">
-        @include('widgets/_sidebar') <!-- Slide mews -->
+        <div class="box-body">
+            <table class="table table-striped" id="list">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>@lang('admin.cate.name')</th>
+                        <th>@lang('admin.cate.slug')</th>
+                        <th>@lang('admin.cate.parent')</th>
+                        <th>@lang('admin.cate.updatedat')</th>
+                        <th>@lang('admin.cate.tool')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php($i = 0)
+                    @foreach($categories as $category)
+                        @php($i++)
+                        <tr>
+                            <td>{!! $i !!}</td>
+                            <td>{!! link_to_route('categories.edit', $category->name, ['category' => $category->id]) !!}</td>
+                            <td>{!! $category->slug !!}</td>
+                            <td>
+                                {!! $category->parent !!}
+                            </td>
+                            <td>{!! $category->updated_at !!}</td>
+                            <td>
+                                {!! link_to_route('categories.edit', 'Sửa', ['category' => $category->id], ['class' => 'btn btn-xs btn-info']) !!}
+                                {!! link_to_route('categories.destroy', 'Xóa', ['category' => $category->id], ['class' => 'delete btn btn-xs btn-danger']) !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-        
     </div>
-</div>
-
 @endsection

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Posts;
+use App\Categories;
+use App\Comments;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -14,7 +18,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dash.dashboard');
+        $posts = Posts::all();
+        $categories = Categories::all();
+        $comments = Comments::all();
+        $user = User::all();
+        return view('admin.dash.dashboard',compact('posts','categories','comments','user'));
     }
 
     /**

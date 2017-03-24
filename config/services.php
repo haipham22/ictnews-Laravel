@@ -38,17 +38,17 @@ return [
     'facebook' => [
         'client_id' => '709234892592040',
         'client_secret' => '544ebfca0492af10842e617405ec339a',
-        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+        'redirect' => 'http://miennui.net/auth/facebook/callback',
     ],
 
     'google' => [
         'client_id' => '244251148865-ef1kuiqv34dbg1ulfb2l9t5kf9l0snjo.apps.googleusercontent.com',
         'client_secret' => 'h0sMH_Y3kJviGEqd2t0Z8fhU',
-        'redirect' => 'http://localhost:8000/auth/google/callback',
+        'redirect' => 'http://miennui.net/auth/google/callback',
     ],  
     'twitter' => [
         'client_id' => '2efPgjMLFqREIkc9SbZdAavAp',
         'client_secret' => 'OHDgqbGbccuTCwBARZqzMVzTa8VvRyU3VGaJRWwhos3p8rc1dy',
-        'redirect' => 'http://localhost:8000/auth/twitter/callback',
+        'redirect' => 'http://miennui.net/auth/twitter/callback',
     ],
 ];

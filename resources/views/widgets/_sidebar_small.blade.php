@@ -1,6 +1,6 @@
 <div class="box wrapper-topview">
     <div class="box-title">
-        <div class="lb-name">Bài viết mới nhất</div>
+        <div class="lb-name">Bài viết ngẫu nhiên</div>
     </div>
     <div class="box-content">
         <div class="news-topview">
