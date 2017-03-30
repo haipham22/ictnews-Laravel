@@ -9,8 +9,8 @@
 @section('scripts')
     {!! Html::script('plugins/datatables/jquery.dataTables.min.js') !!}
     {!! Html::script('plugins/datatables/dataTables.bootstrap.min.js') !!}
-    {{--<script type="text/javascript">
-        $('.btn-status').click(function (e) {
+    <script type="text/javascript">
+        /*$('.btn-status').click(function (e) {
             e.preventDefault();
             var btn = $(this);
             $.post(btn.attr('href'), {
@@ -22,7 +22,7 @@
                     window.location.reload();
                 }
             });
-        })
+        })*/
         $('.modal-dialog').on('click', '.btn-send-comment', function () {
             var content,
                 parent_id,
@@ -44,7 +44,7 @@
 //            console.log(form.find('textarea').val());
             return (content = form.find('textarea:first').val(), user_id = $(this).attr('user_id'), post_id = $(this).attr('post_id'), parent_id = $(this).attr('parent_id'), content.length == 0) ? (form.find(".form-group").addClass("has-error").find("label").html("Bạn chưa nhập nội dung ý kiến !"), !1) : content.length < 10 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá ngắn !"), !1) : content.length > 1e3 ? (form.find(".form-group").addClass("has-error").find("label").html("Nội dung ý kiến quá dài !"), !1) : (send(), !1)
         });
-    </script>--}}
+    </script>
 @endsection
 
 @section('content')
