@@ -13,10 +13,31 @@ class Categories extends Model
         'name', 'slug', 'parent', 'description', 'order', 'add_to_menu'
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
         'add_to_menu'   => 'boolean',
         'status'        => 'boolean',
     ];
+
+    /**
+     * Virtual attribute for Category model
+     * @var array
+     */
+    protected $appends = [
+        'count',
+    ];
+
+    public function getCountAttribute()
+    {
+        if ($this->attributes['parent'] == 0) {
+            return $this->where([
+                    ['parent', $this->attributes['id']],
+                ])->get()->count();
+        }
+        return '0';
+    }
 
     /**
      * @param $name
@@ -82,21 +103,16 @@ class Categories extends Model
      */
     public function getParentAttribute($value)
     {
-        foreach ($this->getAllCategories() as $v) :
+        foreach (Categories::select('id', 'name')
+                     ->where([
+                         ['parent', 0],
+                         ['status', 1]
+                     ])->get() as $v) :
             if ($v->id == $value) {
                 return $v->name;
             }
         endforeach;
         return 'Trống';
-    }
-
-    private function getAllCategories()
-    {
-        return Categories::select('id', 'name')
-            ->where([
-                ['parent', 0],
-                ['status', 1]
-            ])->get();
     }
 
     public function posts()

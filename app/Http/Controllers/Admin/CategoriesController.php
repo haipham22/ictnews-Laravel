@@ -6,8 +6,9 @@ use App\Categories;
 use App\Http\Requests\CategoriesRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use Session;
 use Validator;
- 
+
 class CategoriesController extends Controller
 {
     /**
@@ -58,7 +59,7 @@ class CategoriesController extends Controller
 
         Categories::create($request->all());
 
-        \Session::flash('msg_success', trans('admin.cate.created'));
+        Session::flash('msg_success', trans('admin.cate.created'));
 
         return redirect()->route('categories.index');
     }
@@ -71,7 +72,10 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Categories::find($id);
+        $categories = Categories::where('parent', $category->id)->get();
+
+        return view('admin.categories.index', compact('category', 'categories'));
     }
 
     /**
@@ -91,7 +95,6 @@ class CategoriesController extends Controller
                 return [$item['id'] => $item['name']];
             });
         $category = Categories::find($id);
-//        var_dump($categories);die;
         return view('admin.categories.create', [
             'category'      => $category,
             'categories'    => $categories,
@@ -110,10 +113,10 @@ class CategoriesController extends Controller
         $category = Categories::find($id);
         if ($category->update($request->all()))
         {
-            \Session::flash('msg_success', trans('admin.cate.updated'));
+            Session::flash('msg_success', trans('admin.cate.updated'));
             return redirect()->route('categories.index');
         }
-        \Session::flash('msg_danger', trans('admin.cate.updated'));
+        Session::flash('msg_danger', trans('admin.cate.updated'));
         return redirect()->back();
 
     }

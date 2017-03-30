@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Comments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
 
 class CommentsController extends Controller
 {
@@ -40,6 +41,13 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+        $parent = Comments::find($request->parent_id);
+
+        if (!$parent->status) {
+            $parent->update([
+                'status'    => 1,
+            ]);
+        }
         $comment = Comments::create($request->all());
 
         return $comment;
@@ -88,12 +96,23 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy($id)
     {
         try {
+            $comments = Comments::find($id);
+            $comments->delete();
+            Session::flash('msg_success', trans('admin.comments.deleted'));
+            return redirect()->back();
+        } catch (\Exception $exception) {
+            throw new \Exception($exception->getMessage());
+            Session::flash('msg_danger', $exception->getMessage());
+            return redirect()->back();
+        }
+        /*try {
             $comments = Comments::find($id);
             $comments->delete();
             return response()->json([
@@ -106,7 +125,7 @@ class CommentsController extends Controller
                 'results'   => false,
                 'msg'   => $e->getMessage()
             ]);
-        }
+        }*/
     }
 
     public function setStatus(Request $request, $id)

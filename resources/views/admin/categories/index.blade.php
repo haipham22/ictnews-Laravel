@@ -38,6 +38,7 @@
                             <td>{!! $category->slug !!}</td>
                             <td>
                                 {!! $category->parent !!}
+                                {!! ($category->count > 0) ? link_to_route('categories.show', $category->count, ['category' => $category->id], ['class' => 'btn btn-xs btn-success']) : '' !!}
                             </td>
                             <td>{!! $category->updated_at !!}</td>
                             <td>

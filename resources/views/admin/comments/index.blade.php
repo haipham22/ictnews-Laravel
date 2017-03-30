@@ -105,12 +105,14 @@
                                     </td>
                                     <td><a href="{!! route('posts.getPost', ['slug' => $comment->post()->first()->slug]) !!}#{!! $comment->id !!}">{!! $comment->created_at !!}</a></td>
                                     <td>
-                                        @if($comment->status)
-                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="0" class="btn-status btn-xs btn btn-success">Ẩn</a>
-                                        @else
-                                            <a href="{!! route('comments.setstatus', ['id' => $comment->id]) !!}" status="1" class="btn-status btn-xs btn btn-success">Hiện</a>
-                                        @endif
-                                        {!! link_to_route('comments.destroy', 'Xóa', ['comment' => $comment->id], ['class' => 'delete btn-xs btn btn-danger']) !!}
+                                        {!! Form::open(['action' => ['Admin\CommentsController@update', $comment->id], 'method' => 'PUT', 'class' => 'pull-left']) !!}
+                                            {!! Form::hidden('status', $comment->status ? 0 : 1) !!}
+                                            {!! Form::submit($comment->status ? 'Ẩn' : 'Hiện', ['class' => 'btn-xs btn btn-success']) !!}
+                                        {!! Form::close() !!}
+
+                                        {!! Form::open(['action' => ['Admin\CommentsController@destroy', $comment->id], 'method' => 'DELETE', 'class' => 'pull-right']) !!}
+                                            {!! Form::submit('Xóa', ['class' => 'btn-xs btn btn-danger']) !!}
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                                 @foreach($comments as $sub)
@@ -129,12 +131,14 @@
                                             </td>
                                             <td><a href="{!! route('posts.getPost', ['slug' => $sub->post()->first()->slug]) !!}#{!! $sub->id !!}">{!! $sub->created_at !!}</a></td>
                                             <td>
-                                                @if($sub->status)
-                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="0" class="btn-status btn-xs btn btn-success">Ẩn</a>
-                                                @else
-                                                    <a href="{!! route('comments.setstatus', ['id' => $sub->id]) !!}" status="1" class="btn-status btn-xs btn btn-success">Hiện</a>
-                                                @endif
-                                                {!! link_to_route('comments.destroy', 'Xóa', ['$sub' => $sub->id], ['class' => 'delete btn-xs btn btn-danger']) !!}
+                                                {!! Form::open(['action' => ['Admin\CommentsController@update', $sub->id], 'method' => 'PUT', 'class' => 'pull-left']) !!}
+                                                    {!! Form::hidden('status', $sub->status ? 0 : 1) !!}
+                                                    {!! Form::submit($sub->status ? 'Ẩn' : 'Hiện', ['class' => 'btn-xs btn btn-success']) !!}
+                                                {!! Form::close() !!}
+
+                                                {!! Form::open(['action' => ['Admin\CommentsController@destroy', $sub->id], 'method' => 'DELETE', 'class' => 'pull-right']) !!}
+                                                    {!! Form::submit('Xóa', ['class' => 'btn-xs btn btn-danger']) !!}
+                                                {!! Form::close() !!}
                                             </td>
                                         </tr>
                                     @endif
