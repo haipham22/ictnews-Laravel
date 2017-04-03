@@ -114,9 +114,14 @@ class Categories extends Model
         endforeach;
         return 'Trống';
     }
-
+    
     public function posts()
     {
         return $this->hasManyThrough('App\Posts', 'App\Categories', 'id', 'cate_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('App\Categories', 'parent')->where('add_to_menu', '=', '1');
     }
 }

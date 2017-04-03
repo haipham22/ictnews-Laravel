@@ -3,27 +3,39 @@
 @section('title', trans('admin.post.create'))
 
 @section('styles')
-    {!! Html::style('plugins/select2/select2.css') !!}
+{!! Html::style('plugins/fancybox/dist/jquery.fancybox.min.css') !!}
 @endsection
 
 @section('scripts')
 
-{!! Html::script('plugins/select2/select2.full.min.js') !!}
-{!! Html::script('/js/select2_edit.js') !!}
-
-{!! Html::script('plugins/laravel-ckfinder/ckfinder.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/ckeditor.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
+{!! Html::script('plugins/tinymce/tinymce.min.js') !!}
+{!! Html::script('plugins/fancybox/dist/jquery.fancybox.min.js') !!}
 {!! Html::script('js/ckeditor-custom.js') !!}
+{!! Html::script('js/jquery.observe_field.js') !!}
+
 <script>
-    $('#description').ready(function(){
-        ckeditor("description");
+    $(document).ready(function(){
+        ckeditor("#description");
     });
-    $('#content').ready(function(){
-        ckeditor("content");
+    $(document).ready(function(){
+        ckeditor("#content");
     });
-    $('#thumbnail').click(function(){
-        BrowseServer();
+
+    $('.iframe-btn').fancybox({ 
+        'width'     : 900,
+        'height'    : 600,
+        'type'      : 'iframe',
+        'autoScale' : false
+    });
+
+    $(function() {
+        // Executes a callback detecting changes with a frequency of 1 second
+        $("#image_link").observe_field(1, function( ) {
+            // alert('Change observed! new value: ' + this.value );
+            $('#image_preview').attr('src',this.value).show();
+            fancybox.close();
+
+        });
     });
 </script>
 @endsection
@@ -44,6 +56,16 @@
                             <span class="help-block">{!! $errors->first('title') !!}</span>
                         @endif
                     </div>
+                    <div class="form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
+                        {!! Form::label('slug', trans('admin.post.slug')) !!}
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3">{!! config('app.url') !!}/</span>
+                            {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => trans('admin.post.slug')]) !!}
+                        </div>
+                        @if($errors->has('slug'))
+                            <span class="help-block">{!! $errors->first('slug') !!}</span>
+                        @endif
+                    </div>
                     <div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                         {!! Form::label('description', trans('admin.post.description')) !!}
                         {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'id' => 'description', 'placeholder' => trans('admin.post.description')]) !!}
@@ -57,9 +79,17 @@
                         @if($errors->has('content'))
                             <span class="help-block">{!! $errors->first('content') !!}</span>
                         @endif
-                    </div>
+                    </div> 
+
                 </div>
                 <div class="col-md-4">
+                    <div class="form-group {!! $errors->has('status') ? 'has-error' : '' !!}">
+                        {!! Form::label('status', trans('admin.post.status')) !!}
+                        {!! Form::select('status', [trans('admin.post.notpublic'), trans('admin.post.publish')], old('status') ,['class' => 'form-control']) !!}
+                        @if($errors->has('status'))
+                            <span class="help-block">{!! $errors->first('status') !!}</span>
+                        @endif
+                    </div>
                     <div class="form-group {!! $errors->has('cate_id') ? 'has-error' : '' !!}">
                         {!! Form::label('cate_id', trans('admin.post.cate')) !!}
                         {!! Form::select('cate_id', $categories, null ,['class' => 'form-control', 'placeholder' => '--CHỌN CHUYÊN MỤC--']) !!}
@@ -81,13 +111,13 @@
                             </div>
                             <div class="col-xs-6">
                                 <div class="pull-right">
-                                {!! Form::text('click', 'Chọn ảnh...', ['class' => 'btn btn-xs btn-default', 'id' => 'thumbnail']) !!}
-                                {!! Form::text('thumbnail', old('thumbnail'), ['class' => 'hidden', 'id' => 'urlimg']) !!}
+                                {!! Form::text('thumbnail', old('thumbnail'), ['class' => 'btn btn-xs btn-default hidden', 'id' => 'image_link']) !!}
+                                <a class="btn btn-xs btn-default iframe-btn" type="button" href="/filemanager/dialog.php?type=1&field_id=image_link">chọn ảnh</a>
                                 </div>
                             </div>
                         </div>
 
-                        {!! Form::image(is_active('posts.create') ? '/uploads/img/default-thumbnail.jpg' : $posts->thumbnail,'',['class' => 'img-responsive', 'id' => 'url']) !!}
+                        {!! Form::image(is_active('posts.create') ? '/uploads/img/default-thumbnail.jpg' : $posts->thumbnail,'',['class' => 'img-responsive', 'id' => 'image_preview']) !!} <!-- Show ảnh đại diện -->
 
                         @if($errors->has('thumbnail'))
                             <span class="help-block">{!! $errors->first('thumbnail') !!}</span>

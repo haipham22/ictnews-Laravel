@@ -40,6 +40,19 @@ class Posts extends Model
         return 0;
  	}
 
+    public function getStatusAttribute($value)
+    {
+        foreach (Posts::select('status')
+                     ->where([
+                         ['status', 1]
+                     ])->get() as $v) :
+            if ($v->id == $value) {
+                return 'Không công khai';
+            }
+        endforeach;
+        return 'Công khai';
+    }
+
     public function getUpdatedAtAttribute($value)
     {
         return makeTimeAgo($value);

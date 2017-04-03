@@ -34,6 +34,8 @@ Route::group(['middleware' => 'isroleadmin'], function () {
         Route::post('comments/{id}/setstatus', ['as' => 'comments.setstatus', 'uses'=> 'Admin\CommentsController@setStatus']);
 
         Route::resource('posts', 'Admin\PostsController');
+        Route::post('posts/search', ['as'=>'postsearch','uses'=>'Admin\PostsController@search']);
+        
         Route::resource('users', 'Admin\UsersController');
         Route::resource('pages', 'Admin\PagesController');
         Route::resource('ads', 'Admin\AdsController');
@@ -61,6 +63,7 @@ Route::get('/c/{slug}', ['as'=>'categories.getCate','uses'=>'CategoriesControlle
 View::composer('widgets.menu', function($view){
     $view->with('menuitems', 
         App\Categories::where('add_to_menu','=','1')
+                    ->where('parent','=','0')
                     ->orderBy('order','ASC')
                     ->get());
 });

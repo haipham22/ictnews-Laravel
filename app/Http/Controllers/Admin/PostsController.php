@@ -22,8 +22,8 @@ class PostsController extends Controller
      */
     public function index()
     {   
-        $posts = Posts::orderBy('created_at', 'DESC')->get();
-
+        $posts = Posts::orderBy('created_at', 'DESC')
+                        ->paginate(20);
         return view('admin.posts.index',compact('posts'));
     }
     
@@ -79,6 +79,14 @@ class PostsController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
+        $posts   = Posts::where('title','like',"%$keyword%")
+                    ->paginate(20);
+        return view('admin.posts.search',compact('posts','keyword'));
     }
 
     /**

@@ -14,6 +14,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Posts::orderBy('created_at', 'DESC')
+                    ->where('status', 1)
                     ->paginate(20);
         return view('posts.index',compact('posts','categories'));
     }
@@ -21,7 +22,8 @@ class PostsController extends Controller
     public function getPost($param)
     {
         $posts = Posts::where('slug', $param)
-                        ->firstOrFail();
+                    ->where('status', 1)
+                    ->firstOrFail();
         $comments = $posts->comments()->where([
             ['status', 1],
         ])->get();

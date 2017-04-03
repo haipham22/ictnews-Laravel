@@ -3,13 +3,12 @@
 @section('title')@lang('admin.ads.edit')@endsection
 
 @section('scripts')
-{!! Html::script('plugins/laravel-ckfinder/ckfinder.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/ckeditor.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
+
+{!! Html::script('plugins/tinymce/tinymce.min.js') !!}
 {!! Html::script('js/ckeditor-custom.js') !!}
 <script>
-    $('#content').ready(function(){
-        ckeditor("code");
+    $(document).ready(function(){
+        ckeditor("#code");
     });
 </script>
 @endsection

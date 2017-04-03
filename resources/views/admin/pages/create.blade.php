@@ -3,16 +3,15 @@
 @section('title')Tạo Trang @endsection
 
 @section('scripts')
-{!! Html::script('plugins/laravel-ckfinder/ckfinder.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/ckeditor.js') !!}
-{!! Html::script('plugins/laravel-ckeditor/adapters/jquery.js') !!}
+
+{!! Html::script('plugins/tinymce/tinymce.min.js') !!}
 {!! Html::script('js/ckeditor-custom.js') !!}
 <script>
-    $('#description').ready(function(){
-        ckeditor("description");
+    $(document).ready(function(){
+        ckeditor("#description");
     });
-    $('#content').ready(function(){
-        ckeditor("content");
+    $(document).ready(function(){
+        ckeditor("#content");
     });
 </script>
 @endsection
@@ -31,6 +30,16 @@
                     {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => trans('admin.pages.name')]) !!}
                     @if($errors->has('name'))
                         <span class="help-block">{!! $errors->first('name') !!}</span>
+                    @endif
+                </div>
+                <div class="form-group {!! $errors->has('slug') ? 'has-error' : '' !!}">
+                    {!! Form::label('slug', trans('admin.pages.slug')) !!}
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon3">{!! config('app.url') !!}/</span>
+                        {!! Form::text('slug', old('slug'), ['class' => 'form-control', 'placeholder' => trans('admin.pages.slug')]) !!}
+                    </div>
+                    @if($errors->has('slug'))
+                        <span class="help-block">{!! $errors->first('slug') !!}</span>
                     @endif
                 </div>
                 <div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">

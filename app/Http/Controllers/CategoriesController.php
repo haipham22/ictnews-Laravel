@@ -20,6 +20,7 @@ class CategoriesController extends Controller
 
         $posts = Posts::orderBy('created_at', 'DESC')
                     ->where('cate_id','=',$categories->id)
+                    ->where('status', 1)
                     ->paginate(20);
                     
         return view('categories.index',compact('categories','posts'));

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "93068b363b967608c9cecf84ba9ef961",
-    "content-hash": "fe2ac08585ab1ec2c0293350dafc4313",
+    "hash": "3c781e72db8c33c43e748cba15bf740b",
+    "content-hash": "301aa0ac368a8ab51e066c802a3fc77f",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -225,16 +225,16 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb"
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/20ff8bbb57205368b4b42d094642a3e52dac85fb",
-                "reference": "20ff8bbb57205368b4b42d094642a3e52dac85fb",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/1bf24f7334fe16c88bf9d467863309ceaf285b01",
+                "reference": "1bf24f7334fe16c88bf9d467863309ceaf285b01",
                 "shasum": ""
             },
             "require": {
@@ -263,7 +263,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2016-11-02 15:56:58"
+            "time": "2017-03-29 16:04:15"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -661,16 +661,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "01588748beef55ad5dd4f172d235548d3a6be79a"
+                "reference": "441e0d467319044e4913b1748382d427795416e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/01588748beef55ad5dd4f172d235548d3a6be79a",
-                "reference": "01588748beef55ad5dd4f172d235548d3a6be79a",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/441e0d467319044e4913b1748382d427795416e9",
+                "reference": "441e0d467319044e4913b1748382d427795416e9",
                 "shasum": ""
             },
             "require": {
@@ -711,7 +711,7 @@
                 "laravel",
                 "oauth"
             ],
-            "time": "2017-02-01 13:43:56"
+            "time": "2017-03-27 19:43:19"
         },
         {
             "name": "laravel/tinker",
@@ -1246,6 +1246,52 @@
             "time": "2017-03-13 16:27:32"
         },
         {
+            "name": "petehouston/laravel-tinymce-simple-imageupload",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/petehouston/laravel-tinymce-simple-imageupload.git",
+                "reference": "0f65b8e9619dc4e24313ce5fdcf4053dd099d178"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/petehouston/laravel-tinymce-simple-imageupload/zipball/0f65b8e9619dc4e24313ce5fdcf4053dd099d178",
+                "reference": "0f65b8e9619dc4e24313ce5fdcf4053dd099d178",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.1",
+                "php": "~5.5|~7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Petehouston\\Tinymce\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pete Houston",
+                    "email": "contact@petehouston.com",
+                    "homepage": "http://petehouston.com"
+                }
+            ],
+            "description": "Simple image upload for TinyMCE in Laravel.",
+            "homepage": "https://github.com/petehouston/laravel-tinymce-simple-imageupload",
+            "keywords": [
+                "Image upload",
+                "laravel",
+                "laravel 5",
+                "php",
+                "tinymce"
+            ],
+            "time": "2016-11-01 08:52:37"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -1417,16 +1463,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "3.6.0",
+            "version": "3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "0b7bdfb180e72c8d76e75a649ced67e392201458"
+                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/0b7bdfb180e72c8d76e75a649ced67e392201458",
-                "reference": "0b7bdfb180e72c8d76e75a649ced67e392201458",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
+                "reference": "4ae32dd9ab8860a4bbd750ad269cba7f06f7934e",
                 "shasum": ""
             },
             "require": {
@@ -1438,9 +1484,9 @@
             },
             "require-dev": {
                 "apigen/apigen": "^4.1",
-                "codeception/aspect-mock": "1.0.0",
+                "codeception/aspect-mock": "^1.0 | ^2.0",
                 "doctrine/annotations": "~1.2.0",
-                "goaop/framework": "1.0.0-alpha.2",
+                "goaop/framework": "1.0.0-alpha.2 | ^1.0 | ^2.1",
                 "ircmaxell/random-lib": "^1.1",
                 "jakub-onderka/php-parallel-lint": "^0.9.0",
                 "mockery/mockery": "^0.9.4",
@@ -1495,7 +1541,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2017-03-18 15:38:09"
+            "time": "2017-03-26 20:37:53"
         },
         {
             "name": "swiftmailer/swiftmailer",

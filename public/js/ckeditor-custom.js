@@ -1,40 +1,28 @@
 function ckeditor(name) {
-    var editor = CKEDITOR.replace(name,{
-        language:'vi',
-        filebrowserImageBrowseUrl : baseUrl+'/plugins/laravel-ckfinder/ckfinder.html?Type=Images',
-        filebrowserFlashBrowseUrl : baseUrl+'/plugins/laravel-ckfinder/ckfinder.html?Type=Flash',
-        filebrowserImageUploadUrl : baseUrl+'/plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl : baseUrl+'/plugins/laravel-ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-        toolbar:[
-        ['Source','-','Save','NewPage','Preview','-','Templates'],
-        ['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
-        ['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-        ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'HiddenField'],
-        ['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-        ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-        ['Link','Unlink','Anchor'],
-        ['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-        ['Styles','Format','Font','FontSize'],
-        ['TextColor','BGColor'],
-        ['Maximize', 'ShowBlocks','-','About']
-        ]
-        });
-    }
+    tinymce.init({
+        selector: 'textarea'+name,
+        height: 350,
+        width:"",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern imagetools code fullscreen"
+        ],
+        toolbar1: "undo redo bold italic underline strikethrough cut copy paste| alignleft aligncenter alignright alignjustify bullist numlist outdent indent blockquote searchreplace | styleselect formatselect fontselect fontsizeselect ",
+        toolbar2: "table | hr removeformat | subscript superscript | charmap emoticons ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft | link unlink anchor image media | insertdatetime preview | forecolor backcolor print fullscreen code ",
+        image_advtab: true,
+        image_advtab: true,
+        menubar: false,
+        toolbar_items_size: 'small',
 
-function BrowseServer(name) { // Get a images Ckfinder
-    CKFinder.popup( {
-        chooseFiles: true,
-        onInit: function( finder ) {
-            finder.on( 'files:choose', function( evt ) {
-                var file = evt.data.files.first();
-                document.getElementById('urlimg').value = file.getUrl();
-                var file2 = evt.data.files.first();
-                document.getElementById('url').src = file.getUrl();
-            });
-            finder.on( 'file:choose:resizedImage', function( evt ) {
-                document.getElementById('url').src = evt.data.resizedUrl;
-            });
-        }
+        relative_urls: true, 
+        remove_script_host : true,
+        filemanager_title:"Media Manager",  
+        external_filemanager_path: baseUrl + "/filemanager/",
+        external_plugins: { 
+            "filemanager" : baseUrl + "/filemanager/plugin.min.js",
+        },
+        //filemanager_access_key:csrf(),
     });
 }
