@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+﻿jQuery(document).ready(function ($) {
     if ($('#list').length) {
         $('#list').dataTable({
             /** Option cho list */
@@ -41,8 +41,8 @@ var deleter = {
                             _method: 'DELETE',
                         }
                     }).done(function (data) {
+                        swal(data.msg)
                         if (data.results == true) {
-                            swal(data.msg)
                             window.location.reload();
                         }
                     });

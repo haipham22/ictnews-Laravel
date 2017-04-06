@@ -129,7 +129,27 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        try {
+        $category = Categories::find($id);
+
+        // Chuyện kể rằng có 1 thanh niên lười dùng foreach để thay đổi chuyên mục cha
+        // nên bạn ấy chơi như này :))
+        $child = Categories::where('parent', $id)->get();
+
+        if ($child->count() > 0) {
+            return response()->json([
+                'results'   => false,
+                'msg'   => 'Xóa chuyên mục con trước',
+            ]);
+        }
+
+        $category->delete();
+
+        return response()->json([
+            'results'   => true,
+            'msg'   => trans('admin.cate.deleted'),
+        ]);
+
+        /*try {
             $category = Categories::find($id);
             $category->delete();
             return response()->json([
@@ -142,6 +162,6 @@ class CategoriesController extends Controller
                 'results'   => false,
                 'msg'   => $e->getMessage()
             ]);
-        }
+        }*/
     }
 }
