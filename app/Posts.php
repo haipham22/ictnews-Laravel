@@ -27,6 +27,10 @@ class Posts extends Model
  	    'cm_count', 'view'
     ];
 
+ 	protected $casts = [
+ 	    'status'
+    ];
+
     public function getViewAttribute()
     {
         return $this->getMeta('view');
@@ -49,7 +53,17 @@ class Posts extends Model
 
     public function getStatusAttribute($value)
     {
-        foreach (Posts::select('status')
+        if (is_active('posts.index')) {
+            if (!$value) {
+                return 'Không công khai';
+            }
+            return 'Công khai';
+        }
+        return $value;
+
+        /**
+         * Foreach ở đây làm gì?
+         * foreach (Posts::select('status')
                      ->where([
                          ['status', 1]
                      ])->get() as $v) :
@@ -57,7 +71,7 @@ class Posts extends Model
                 return 'Không công khai';
             }
         endforeach;
-        return 'Công khai';
+        return 'Công khai';*/
     }
 
     public function getUpdatedAtAttribute($value)
