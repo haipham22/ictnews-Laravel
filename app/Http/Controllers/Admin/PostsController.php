@@ -51,7 +51,7 @@ class PostsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PostsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(PostsRequest $request)
@@ -123,6 +123,8 @@ class PostsController extends Controller
         $post = $request->all();
         $post['user_update'] = auth()->user()->id;
 
+        $posts->updateMeta('view', $request->view);
+
         if ($posts->update($post))
         {
             \Session::flash('msg_success', trans('admin.post.updated'));
@@ -140,8 +142,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        // TODO: Thanh niên này copy không sửa biến :))
         try {
             $category = Posts::find($id);
+            $category->deleteAllMeta();
             $category->delete();
             return response()->json([
                 'results'   => true,

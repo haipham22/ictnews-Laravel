@@ -43,6 +43,11 @@
             return $(this).closest(".bc-input").addClass("hidden"),
                 !1
         });
+        $.post(WebControl.ajax_url, {
+            _token: WebControl.csrfToken,
+            type: 'update_view',
+            id: $('#post_id').val()
+        })
     </script>
 @stop
 
@@ -61,6 +66,7 @@
                                 </a></li>
                             <li class="time">
                                 <i class="fa fa-calendar"></i>{{ $posts->created_at }}  <i class="fa fa-user"></i>{{ $posts->user->username }}
+                                  <i class="fa fa-eye"></i>{!! number_format($posts->view) !!}
                             </li>
                         </ol>
             			<div id="page-wraper" class="box-news">

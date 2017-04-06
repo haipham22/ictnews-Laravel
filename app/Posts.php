@@ -2,12 +2,14 @@
 
 namespace App;
 
+use HaiPham\Meta\MetaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
 class Posts extends Model
 {
-	use Sluggable; // Tạo Slug đường dẫn thân thiện
+	use Sluggable, // Tạo Slug đường dẫn thân thiện
+        MetaTrait;
 
  	public function sluggable()
     {
@@ -22,8 +24,13 @@ class Posts extends Model
     ];
 
  	protected $appends = [
- 	    'cm_count'
+ 	    'cm_count', 'view'
     ];
+
+    public function getViewAttribute()
+    {
+        return $this->getMeta('view');
+ 	}
 
     public function getCmCountAttribute()
     {

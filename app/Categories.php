@@ -44,7 +44,7 @@ class Categories extends Model
      */
     public function setNameAttribute($name)
     {
-        $this->attributes['name'] = trim(mb_convert_case($name, MB_CASE_TITLE, 'UTF-8'));
+        $this->attributes['name'] = trim(title_case($name));
     }
 
     /**

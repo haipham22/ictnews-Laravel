@@ -53,4 +53,19 @@ class PostsController extends Controller
         ]);
     }
 
+    private function update_view($request)
+    {
+        $post = Posts::find($request->id);
+
+        $view = $post->view;
+
+        if (empty($view)) {
+            $post->addMeta('view', 1);
+            return;
+        }
+        $view++;
+        $post->updateMeta('view', $view);
+        return;
+    }
+
 }

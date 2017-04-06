@@ -187,6 +187,9 @@ return [
         /** Active */
         Watson\Active\ActiveServiceProvider::class,
 
+        /** HaiPham */
+        HaiPham\Meta\MetaServiceProvider::class,
+
     ],
 
     /*

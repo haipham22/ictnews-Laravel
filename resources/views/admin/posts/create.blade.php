@@ -83,6 +83,12 @@
 
                 </div>
                 <div class="col-md-4">
+                    @if(is_active('posts.edit'))
+                        <div class="form-group">
+                            {!! Form::label('view', trans('admin.post.view')) !!}
+                            {!! Form::number('view', old('view'), ['class' => 'form-control']) !!}
+                        </div>
+                    @endif
                     <div class="form-group {!! $errors->has('status') ? 'has-error' : '' !!}">
                         {!! Form::label('status', trans('admin.post.status')) !!}
                         {!! Form::select('status', [trans('admin.post.notpublic'), trans('admin.post.publish')], old('status') ,['class' => 'form-control']) !!}
