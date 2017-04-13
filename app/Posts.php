@@ -2,7 +2,7 @@
 
 namespace App;
 
-use HaiPham\Meta\MetaTrait;
+use Phoenix\EloquentMeta\MetaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
