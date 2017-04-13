@@ -117,7 +117,7 @@ class Categories extends Model
     
     public function posts()
     {
-        return $this->hasManyThrough('App\Posts', 'App\Categories', 'id', 'cate_id');
+        return $this->hasManyThrough('App\Posts', 'App\Categories', 'id', 'cate_id')->orderBy('created_at', 'desc')->limit(5);
     }
 
     public function children()

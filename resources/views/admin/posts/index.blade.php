@@ -6,28 +6,21 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">@lang('admin.post.index')</h3>
+
+        <div class="box-tools">
+            <form action="{{ route('postsearch') }}" method="POST">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    {{ csrf_field() }}
+                    <input type="text" name="keyword" class="form-control pull-right" placeholder="Tìm kiếm" required>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="box-body">
         <table class="table table-striped">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <form action="{{ route('postsearch') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-sm" name="keyword">
-                                    </div>
-                                    <button type="submit" class="col-md-4 btn btn-sm btn-search">Tìm</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <thead>
                 <tr>
                     <th>#</th>

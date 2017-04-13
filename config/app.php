@@ -188,7 +188,7 @@ return [
         Watson\Active\ActiveServiceProvider::class,
 
         /** HaiPham */
-        Phoenix\EloquentMeta\ServiceProvider::class,
+        HaiPham\Meta\MetaServiceProvider::class,
 
     ],
 

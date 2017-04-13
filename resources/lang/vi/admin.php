@@ -72,8 +72,12 @@ return [
     'pages.description'  => 'Mô tả',
     'pages.content'      => 'Nội dung',
     'pages.submit'       => 'Đăng',
+    'pages.created'      => 'Đã tạo mới một trang',
     'pages.updated'      => 'Đã cập nhật trang',
     'pages.create'       => 'Thêm trang mới',
+    'pages.status'       => 'Trạng thái',
+    'pages.publish'      => 'Công khai',
+    'pages.notpublic'    => 'Không công khai',
 
     'ads.title'          => 'Quảng cáo',
     'ads.index'          => 'Quản lý quảng cáo',

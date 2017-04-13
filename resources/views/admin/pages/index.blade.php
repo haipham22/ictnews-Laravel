@@ -24,6 +24,7 @@
                   	<th>@lang('admin.pages.name')</th>
                     <th>@lang('admin.pages.slug')</th>
                     <th>@lang('admin.pages.created_at')</th>
+                    <th>@lang('admin.pages.status')</th>
                   	<th>@lang('admin.pages.tool')</th>
                 </tr>
                 @php($i = 0)
@@ -33,7 +34,8 @@
                   	<td>{!! $i !!}.</td>
                     <td>{!! link_to_route('pages.edit', $item->name, ['item' => $item->id]) !!}</td>
                     <td>{{ $item->slug }}</td>
-                  	<td>{{ $item->created_at }}</td>
+                    <td>{{ $item->created_at }}</td>
+                  	<td>{!! ($item->status == 1) ? 'Công khai' : 'Không công khai' !!}</td>
                     <td>
                         {!! link_to_route('pages.edit', 'Sửa', ['item' => $item->id], ['class' => 'btn btn-xs btn-xs btn-info']) !!}
                         {!! link_to_route('pages.destroy', 'Xóa', ['item' => $item->id], ['class' => 'delete btn btn-xs btn-danger']) !!}

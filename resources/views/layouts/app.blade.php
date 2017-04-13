@@ -39,7 +39,7 @@
                     <div class="bs-inner">
                         <form action="{{ route('search') }}" method="POST">
                             {{ csrf_field() }}
-                            <input name="keyword" id="input-search-main" class="form-control" type="text" placeholder="{{trans('home.search')}}">
+                            <input name="keyword" id="input-search-main" class="form-control" type="text" placeholder="{{trans('home.search')}}" required>
                             <button type="submit" class="btn-search"><span class="glyphicon glyphicon-search"></span></button>
                         </form>
                     </div>
@@ -57,6 +57,9 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ asset('user') }}">Trang cá nhân</a></li>
+                            @if((Auth::user()->role) == 2)
+                            <li><a href="{{ asset('admin') }}">Quản trị viên</a></li>
+                            @endif
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -95,16 +98,21 @@
             </div><!-- footer-menu -->
             <div class="footer-col">
                 <div class="row">
-                    <div class="col-md-7 col-sm-6">
+                    <div class="col-md-12">
                         <div class="footer-logo"><a href="/"><img src="/uploads/img/logo.png" alt="logo" style="height:66px"></a></div>
+                    </div>
+                    <div class="col-md-7 col-sm-6">
                         <div class="footer-content">
                             <p>N2NEWS - Chuyên trang về CNTT của Báo điện tử N2MAG.</p>
                             <p>Cơ quan chủ quản: <b>Tập Đoàn Công Nghệ N2 Vietnam.</b></p>      
                             <p>Tổng biên tập: Trần Hữu Thiện; Phó Tổng biên tập: Trần Hữu Thiên.</p>
                             <p class="hidden-lg hidden-md">Hotline nội dung: 0888 888 888 - Email: toasoan@n2news.vn</p>
-                            <p>© Bản quyền thuộc N2NEWS. Không được phép sao chép khi chưa được chấp thuận bằng văn bản.</p>
+                            <p>© Bản quyền thuộc N2NEWS.</p>
                         </div><!-- footer-content -->
                     </div><!-- col -->
+                    <div class="col-md-5 col-sm-6 hidden-xs">
+                        @include('widgets._pages_list')
+                    </div>
                 </div><!-- row -->
             </div><!-- footer-col -->
         </div><!-- container -->

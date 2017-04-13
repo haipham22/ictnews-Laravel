@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Phoenix\EloquentMeta\MetaTrait;
+use HaiPham\Meta\MetaTrait;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -60,18 +60,6 @@ class Posts extends Model
             return 'Công khai';
         }
         return $value;
-
-        /**
-         * Foreach ở đây làm gì?
-         * foreach (Posts::select('status')
-                     ->where([
-                         ['status', 1]
-                     ])->get() as $v) :
-            if ($v->id == $value) {
-                return 'Không công khai';
-            }
-        endforeach;
-        return 'Công khai';*/
     }
 
     public function getUpdatedAtAttribute($value)

@@ -6,28 +6,21 @@
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">@lang('admin.post.seach'): {{ $keyword }}</h3>
+
+        <div class="box-tools">
+            <form action="{{ route('postsearch') }}" method="POST">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    {{ csrf_field() }}
+                    <input type="text" name="keyword" class="form-control pull-right" placeholder="Tìm kiếm" required>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="box-body">
         <table class="table table-striped">
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <form action="{{ route('postsearch') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control input-sm" name="keyword">
-                                    </div>
-                                    <button type="submit" class="col-md-4 btn btn-sm btn-search">Tìm</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <thead>
                 <tr>
                     <th>#</th>
@@ -52,7 +45,7 @@
                         <td>{!! $post->user->username !!}</td>
                         <td>{!! $post->Categories->name !!}</td>
                         <td>{!! $post->updated_at !!}</td>
-                        <td>{!! $post->status !!}</td>
+                        <td>{!! ($post->status == 1)  ? 'Công khai' : 'Không công khai' !!}</td>
                         <td>
                             {!! link_to_route('posts.edit', 'Sửa', ['posts' => $post->id], ['class' => 'btn btn-xs btn-info']) !!}
                             {!! link_to_route('posts.destroy', 'Xóa', ['posts' => $post->id], ['class' => 'delete btn btn-xs btn-danger']) !!}

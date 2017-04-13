@@ -42,6 +42,13 @@
                         <span class="help-block">{!! $errors->first('slug') !!}</span>
                     @endif
                 </div>
+                <div class="form-group {!! $errors->has('status') ? 'has-error' : '' !!}">
+                    {!! Form::label('status', trans('admin.pages.status')) !!}
+                    {!! Form::select('status', [trans('admin.pages.notpublic'), trans('admin.pages.publish')], old('status') ,['class' => 'form-control']) !!}
+                    @if($errors->has('status'))
+                        <span class="help-block">{!! $errors->first('status') !!}</span>
+                    @endif
+                </div>
                 <div class="form-group {!! $errors->has('description') ? 'has-error' : '' !!}">
                     {!! Form::label('description', trans('admin.pages.description')) !!}
                     {!! Form::textarea('description', old('description'), ['class' => 'form-control', 'id' => 'description', 'placeholder' => trans('admin.pages.description')]) !!}

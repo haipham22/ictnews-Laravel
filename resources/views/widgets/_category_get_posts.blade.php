@@ -3,13 +3,13 @@
     <div class="col-md-6">
         <div class="box wrapper-list">
             <div class="box-title">
-                <div class="lb-name">{{$category->name}}</div>
+                <a href="{{ URL::route('categories.getCate',$category->slug) }}" class="lb-name">{{$category->name}}</a>
             </div>
             <div class="box wrapper-list">
                 <div class="box-content">
                     <div class="news-list">
                         <ul>
-                        @foreach($category->posts->sortBy('created_at') as $post)
+                        @foreach($category->posts->where('status',1) as $post)
                             @if ($loop->first)
                             <div class="news-big">
                                 <div class="grid">

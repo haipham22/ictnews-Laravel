@@ -61,7 +61,7 @@
         <p class="small">
             Bình luận của bạn đã được gửi và sẽ hiển thị sau khi được duyệt bởi ban biên tập.
             <br>
-            Ban biên tập giữ quyền biên tập nội dung bình luận để phù hợp với qui định nội dung của ictnews.
+            Ban biên tập giữ quyền biên tập nội dung bình luận để phù hợp với qui định nội dung của N2News.
         </p>
     </div>
     <div class="bc-input">
